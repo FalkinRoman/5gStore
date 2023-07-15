@@ -12,10 +12,13 @@ class BasketController extends Controller
 {
     public function basket()    //Страница корзины
     {
+        //Поменял !is null, добавил session и redirect
         $orderId = session('orderId');
-        if(!is_null($orderId)) {
-            $order = Order::findOrFail($orderId);
+        if(is_null($orderId)) {
+            session()->flash('warning', 'Ваша корзина пуста!');
+            return redirect()->route('index');
         }
+        $order = Order::findOrFail($orderId);
         return view('basket', compact('order'));
     }
 
