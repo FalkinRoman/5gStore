@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory;
+    protected $fillable = ['code','category_id', 'name', 'description', 'image', 'price'];
     //функция возвращает категорию продукта
     public function category() {
         return $this->belongsTo(Category::class);

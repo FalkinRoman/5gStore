@@ -1,11 +1,11 @@
 @extends('admin.layouts.master')
-@section('admin.title', $category->name)
+@section('admin.title', $product->name)
 
 @section('admin.content')
     <main>
     <div class="container">
 
-        <h1 class="text-center mt-4 mb-4">Категория {{ $category->name }}</h1>
+        <h1 class="text-center mt-4 mb-4">Товар {{ $product->name }}</h1>
         <table class="table">
             <thead>
             <tr>
@@ -16,27 +16,32 @@
             <tbody>
                 <tr>
                     <td>ID</td>
-                    <td>{{ $category->id }}</td>
+                    <td>{{ $product->id }}</td>
                 </tr>
                 <tr>
                     <td>Код</td>
-                    <td>{{ $category->code }}</td>
+                    <td>{{ $product->code }}</td>
                 </tr>
                 <tr>
                     <td>Название</td>
-                    <td>{{ $category->name }}</td>
+                    <td>{{ $product->name }}</td>
                 </tr>
                 <tr>
                     <td>Описание</td>
-                    <td>{{ $category->description }}</td>
+                    <td>{{ $product->description }}</td>
                 </tr>
+                <tr>
+                    <td>Категория</td>
+                    <td>{{ $product->category->name }}</td>
+                </tr>
+
                 <tr>
                     <td>Картинка</td>
-                    <td>{{ $category->image }}</td>
+                    <td>{{ $product->image }}</td>
                 </tr>
                 <tr>
-                    <td>Колличество товаров</td>
-                    <td>{{ $category->products->count() }}</td>
+                    <td>Цена</td>
+                    <td>{{ $product->price }} руб.</td>
                 </tr>
             </tbody>
 

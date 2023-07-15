@@ -8,6 +8,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('home', [\App\Http\Controllers\Admin\HomeController::class, 'home'])->name('home');
     Route::get('logout', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
+    Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
 });
 
 Route::middleware('guest:admin')->group(function () {

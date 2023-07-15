@@ -5,7 +5,7 @@
 
         <div class="card-body">
             <h5 class="card-title">{{$product -> name}}</h5>
-            <p class="card-text">{{$product -> priсe}} руб.</p>
+            <p class="card-text">{{$product -> price}} руб.</p>
             <p class="card-text"> {{ $product->category->name }} </p>
             <div>
                 <form action="{{ route('basket-add', $product->id) }}" method="POST">
