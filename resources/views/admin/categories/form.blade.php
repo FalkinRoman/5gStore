@@ -31,19 +31,34 @@
 
             <div class="form-group mt-4">
                 <label for="code">Код:</label>
-                <input name="code" type="text" class="form-control" id="code" placeholder="Введите код" value="@isset($category){{ $category->code }} @endisset">
+                <input name="code" type="text" class="form-control @error('code') is-invalid @enderror" id="code" placeholder="Введите код" value=" {{ old('code', isset($category) ? $category->code: null) }}">
+                @error('code')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="form-group mt-2">
                 <label for="name">Название:</label>
-                <input name="name" type="text" class="form-control" id="name" placeholder="Введите название" value="@isset($category){{ $category->name }} @endisset">
+                <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Введите название" value="{{ old('name', isset($category) ? $category->name: null) }}">
+                @error('name')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="form-group mt-2">
                 <label for="description">Описание:</label>
-                <textarea name="description" class="form-control" id="description" rows="5" placeholder="Введите описание">@isset($category){{ $category->description }} @endisset</textarea>
+                <textarea name="description" class="@error('description') is-invalid @enderror form-control" id="description" rows="5" placeholder="Введите описание">{{ old('description', isset($category) ? $category->description: null) }}</textarea>
+                @error('description')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="form-group mt-2">
                 <label for="image">Картинка:</label>
-                <input name="image" type="file" class="form-control-file" id="image" value="@isset($category){{ $category->image }} @endisset">
+                <input name="image" type="file" class="form-control-file" id="image" value="{{ old('image', isset($category) ? $category->image: null) }}">
             </div>
             <button type="submit" class="btn btn-primary mt-4">Сохранить</button>
         </form>

@@ -31,15 +31,30 @@
 
             <div class="form-group mt-4">
                 <label for="code">Код:</label>
-                <input name="code" type="text" class="form-control" id="code" placeholder="Введите код" value="@isset($product){{ $product->code }} @endisset">
+                <input name="code" type="text" class="@error('code') is-invalid @enderror form-control" id="code" placeholder="Введите код" value="{{ old('code', isset($product) ? $product->code: null) }}">
+                @error('code')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="form-group mt-2">
                 <label for="name">Название:</label>
-                <input name="name" type="text" class="form-control" id="name" placeholder="Введите название" value="@isset($product){{ $product->name }} @endisset">
+                <input name="name" type="text" class="@error('name') is-invalid @enderror form-control" id="name" placeholder="Введите название" value="{{ old('name', isset($product) ? $product->name: null) }}">
+                @error('name')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="form-group mt-2">
                 <label for="description">Описание:</label>
-                <textarea name="description" class="form-control" id="description" rows="5" placeholder="Введите описание">@isset($product){{ $product->description }} @endisset</textarea>
+                <textarea name="description" class="@error('description') is-invalid @enderror form-control" id="description" rows="5" placeholder="Введите описание">{{ old('description', isset($product) ? $product->description: null) }}</textarea>
+                @error('description')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="exampleSelect">Выберите категорию:</label>
@@ -57,11 +72,16 @@
             </div>
             <div class="form-group mt-2">
                 <label for="image">Картинка:</label>
-                <input name="image" type="file" class="form-control-file" id="image" value="@isset($product){{ $product->image }} @endisset">
+                <input name="image" type="file" class="form-control-file" id="image" value="{{ old('image', isset($product) ? $product->image: null) }}">
             </div>
             <div class="form-group mt-2">
                 <label for="description">Цена:</label>
-                <input name="price" type="text" class="form-control" id="price" placeholder="Введите цену" value="@isset($product){{ $product->price }} @endisset">
+                <input name="price" type="text" class="@error('price') is-invalid @enderror form-control" id="price" placeholder="Введите цену" value="{{ old('price', isset($product) ? $product->price: null) }}">
+                @error('price')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <button type="submit" class="btn btn-primary mt-4">Сохранить</button>
         </form>

@@ -37,7 +37,7 @@
                             </div>
                             <div style="width: 90px; margin-left: 10px" class="d-flex ml-3 flex-column ">
                                 <span class="text-muted">Цена:</span>
-                                <span class="font-weight-bold">{{ $product->priсe }} руб.</span>
+                                <span class="font-weight-bold">{{ $product->price }} руб.</span>
                             </div>
                             <div style="width: 100px;" class="d-flex ml-3 flex-column">
                                 <span class="text-muted">Стоимость:</span>
