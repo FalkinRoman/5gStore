@@ -37,7 +37,7 @@
 
                 <tr>
                     <td>Картинка</td>
-                    <td>{{ $product->image }}</td>
+                    <td><img src="{{ Storage::url($product->image) }} "></td>
                 </tr>
                 <tr>
                     <td>Цена</td>

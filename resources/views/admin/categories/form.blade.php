@@ -14,7 +14,7 @@
         @else
             <h2>Создать категорию</h2>
         @endisset
-        <form  method="POST"
+        <form  method="POST" enctype="multipart/form-data"
         @isset($category)
             action="{{ route('admin.categories.update',$category->id) }}"
             @else

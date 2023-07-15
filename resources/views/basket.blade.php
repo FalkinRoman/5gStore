@@ -15,7 +15,7 @@
                         <div class="mr-3">
                             <a href="{{ route('product', [$product->category->code, $product->code]) }}">
                                 <img class="" style="height: 70px"
-                                     src="https://cdn.citilink.ru/ZpckPyoKBcNETQSHrcXcFNuEh4kA6Cn5MAirnI15WVA/resizing_type:fit/gravity:sm/width:1200/height:1200/plain/items/1863801_v01_b.jpg">
+                                     src="{{ Storage::url($product->image) }} ">
                             </a>
                         </div>
                         <div style="margin-left: 10px">

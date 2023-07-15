@@ -14,7 +14,7 @@
         @else
             <h2>Создать товар</h2>
         @endisset
-        <form  method="POST"
+        <form  method="POST" enctype="multipart/form-data"
         @isset($product)
             action="{{ route('admin.products.update',$product->id) }}"
             @else

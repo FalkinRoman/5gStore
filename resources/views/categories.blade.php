@@ -9,7 +9,7 @@
             </div>
             <div class="card-body">
                 <img class="" style="height: 70px"
-                     src="https://cdn.citilink.ru/ZpckPyoKBcNETQSHrcXcFNuEh4kA6Cn5MAirnI15WVA/resizing_type:fit/gravity:sm/width:1200/height:1200/plain/items/1863801_v01_b.jpg">
+                     src="{{ Storage::url($category->image) }} ">
                 <h5 class="card-title">{{$category->name}}</h5>
                 <p class="card-text">{{$category->description}}</p>
                 <a href="/{{$category->code}}" class="btn btn-primary">Подробнее</a>
