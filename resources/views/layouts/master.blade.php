@@ -21,11 +21,10 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="{{ route('index') }}" class="nav-link px-2 text-secondary" style="vertical-align: inherit;" style="vertical-align: inherit;">Главная страница</a></li>
-                <li><a href="{{ route('categories') }}" class="nav-link px-2 text-secondary" style="vertical-align: inherit;" style="vertical-align: inherit;">Категории</a></li>
-                <li><a href="{{ route('basket') }}" class="nav-link px-2 text-secondary" style="vertical-align: inherit;" style="vertical-align: inherit;">Корзина</a></li>
-                <li><a href="#" class="nav-link px-2 text-secondary" style="vertical-align: inherit;" style="vertical-align: inherit;">Дом</a></li>
-                <li><a href="#" class="nav-link px-2 text-secondary" style="vertical-align: inherit;" style="vertical-align: inherit;">Дом</a></li>
+                <li><a href="{{ route('index') }}" class="nav-link px-2  text-secondary btn  @if(Route::currentRouteNamed('index')) text-white  @endif " style="vertical-align: inherit;">Главная страница</a></li>
+                <li><a href="{{ route('categories') }}" class="nav-link px-2 text-secondary @if(Route::currentRouteNamed('categor*')) text-white  @endif" style="vertical-align: inherit;" style="vertical-align: inherit;">Категории</a></li>
+                <li><a href="{{ route('basket') }}" class="nav-link px-2 text-secondary @if(Route::currentRouteNamed('basket*')) text-white  @endif" style="vertical-align: inherit;" style="vertical-align: inherit;">Корзина</a></li>
+
 
             </ul>
 
@@ -35,7 +34,7 @@
 
             <div class="text-end">
                 @guest('web')
-                <a href="{{ route('login') }}" type="button" class="btn btn-outline-light me-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Авторизоваться</font></font></a>
+                <a href="{{ route('login') }}" type="button" class="btn btn-outline-light me-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Войти</font></font></a>
                 <a href="{{ route('register') }}" type="button" class="btn btn-warning"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Зарегистрироваться</font></font></a>
                 @endguest
 

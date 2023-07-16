@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Панель администратора')
+@section('title', 'Личный кабинет')
 
 @section('content')
     <main>

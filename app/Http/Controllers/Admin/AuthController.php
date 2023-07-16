@@ -21,7 +21,7 @@ class AuthController extends Controller
         ]);
 
         if (auth('admin')->attempt($data)){
-            return redirect()->route('admin.home');
+            return redirect()->route('admin.orders');
         }
 
         return redirect()->route('admin.login')->withErrors(["email" => " Пользователь не найден, либо данные введены не правильно"]);

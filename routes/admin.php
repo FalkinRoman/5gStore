@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth:admin')->group(function () {
-    Route::get('home', [\App\Http\Controllers\Admin\HomeController::class, 'home'])->name('home');
+    Route::get('orders', [\App\Http\Controllers\Admin\HomeController::class, 'orders'])->name('orders');
+    Route::get('orders/{order}', [\App\Http\Controllers\Admin\HomeController::class, 'show'])->name('orders.show');
     Route::get('logout', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
