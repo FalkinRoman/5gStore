@@ -1,7 +1,7 @@
-@extends('admin.layouts.master')
-@section('admin.title', 'Заказ '. $order->name)
+@extends('layouts.master')
+@section('title', 'Заказ '. $order->name)
 
-@section('admin.content')
+@section('content')
     <main>
     <div class="container">
 

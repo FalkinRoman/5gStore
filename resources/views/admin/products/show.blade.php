@@ -37,11 +37,27 @@
 
                 <tr>
                     <td>Картинка</td>
-                    <td><img src="{{ Storage::url($product->image) }} "></td>
+                    <td><img style="height:140px; width: 120px;" src="{{ Storage::url($product->image) }} "></td>
                 </tr>
                 <tr>
                     <td>Цена</td>
                     <td>{{ $product->price }} руб.</td>
+                </tr>
+                <tr>
+                    <td>Лейблы</td>
+                    <td>
+                        <div class="d-flex">
+                            @if($product->isNew())
+                                <span class="badge bg-primary m-1">Новинка</span>
+                            @endif
+                            @if($product->isHit())
+                                <span class="badge bg-danger m-1">Хит продаж</span>
+                            @endif
+                            @if($product->isRecommend())
+                                <span class="badge bg-success m-1">Рекомендуем</span>
+                            @endif
+                        </div>
+                    </td>
                 </tr>
             </tbody>
 

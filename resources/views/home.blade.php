@@ -26,7 +26,7 @@
                     <td>{{ $order->created_at->format('H:i d/m/Y') }}</td>
                     <td>{{ $order->getFullPrice() }} руб.</td>
                     <td>
-                        <button class="btn btn-primary">Открыть</button>
+                        <a href="{{ route("orders.show", $order) }}" class="btn btn-primary">Открыть</a>
                     </td>
                 </tr>
             @endforeach

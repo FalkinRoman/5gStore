@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function (){
     Route::get('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
     Route::get('/home', [\App\Http\Controllers\HomeController::class, 'home'])->name('home');
-
+    Route::get('order/{order}', [\App\Http\Controllers\HomeController::class, 'show'])->name('orders.show');
 });
 
 //Гости
