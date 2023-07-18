@@ -33,6 +33,9 @@
 
             </tbody>
         </table>
+        <div id="pagination" class="d-flex justify-content-start mt-3">
+            {{ $orders->links() }}
+        </div>
     </div>
 @endsection
 

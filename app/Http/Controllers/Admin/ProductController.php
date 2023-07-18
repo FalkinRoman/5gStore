@@ -18,7 +18,7 @@ class ProductController extends Controller
      */
     public function index() //страница товаров
     {
-        $products = Product::get();
+        $products = Product::paginate(10);
         $categories = Category::get();
         return view('admin.products.products', compact('products', 'categories'));
     }

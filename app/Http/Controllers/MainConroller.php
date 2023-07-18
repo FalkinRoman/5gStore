@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductsFilterRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -9,9 +10,21 @@ use Illuminate\Http\Request;
 
 class MainConroller extends Controller
 {
-    public function index(Request $request) {
-        $products = Product::paginate(10);
-        return view('index', ['products' => $products]);
+    public function index(ProductsFilterRequest $request) {
+        $productsQuery = Product::query();
+        if ($request->filled('price_from')) {
+            $productsQuery->where('price', '>=', $request->price_from);
+        }
+        if ($request->filled('price_to')) {
+            $productsQuery->where('price', '<=', $request->price_to);
+        }
+        foreach (['hit','new','recommend'] as $field) {
+            if ($request->has($field)) {
+                $productsQuery->where($field, 1);
+            }
+        }
+        $products = $productsQuery->Paginate(5)->withPath("?" . $request->getQueryString());
+        return view('index', compact('products'));
     }
 
     public function categories() {

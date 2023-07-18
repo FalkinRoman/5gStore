@@ -41,7 +41,10 @@
             </tbody>
 
         </table>
-        <a href="{{ route('admin.products.create') }}" class="btn btn-primary">Добавить товар</a>
+        <div id="pagination" class="d-flex justify-content-start mt-3">
+            {{ $products->links() }}
+        </div>
+        <a href="{{ route('admin.products.create') }}" class="mt-3 btn btn-primary">Добавить товар</a>
     </div>
 @endsection
 

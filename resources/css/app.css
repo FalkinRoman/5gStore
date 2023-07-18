@@ -3,7 +3,6 @@ body {
 }
 
 
-
 #pagination>nav:nth-child(1) >:nth-child(1){
     display: none;
 }
@@ -12,13 +11,6 @@ body {
     display: none;
 }
 
-/*#pagination>nav:nth-child(1) >:nth-child(2)>:nth-child(2)>:nth-child(1)>:nth-child(1)>:nth-child(1)>:nth-child(1){*/
-/*    width: 20px;*/
-/*}*/
-
-/*#pagination>nav:nth-child(1) >:nth-child(2)>:nth-child(2)>:nth-child(1)>:nth-child(4)>:nth-child(1){*/
-/*    width: 20px;*/
-/*}*/
 #pagination svg{
     width: 20px !important;
 }
