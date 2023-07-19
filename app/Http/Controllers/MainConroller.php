@@ -23,7 +23,7 @@ class MainConroller extends Controller
                 $productsQuery->where($field, 1);
             }
         }
-        $products = $productsQuery->Paginate(5)->withPath("?" . $request->getQueryString());
+        $products = $productsQuery->Paginate(10)->withPath("?" . $request->getQueryString());
         return view('index', compact('products'));
     }
 

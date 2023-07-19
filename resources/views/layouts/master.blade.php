@@ -48,7 +48,7 @@
         </div>
     </div>
 </header>
-<main>
+<main >
     {{--    уведомление об удачном выполнении или добавлении--}}
     @if(session()->has('success'))
         <div class="alert alert-success d-flex  align-items-center justify-content-center" role="alert">
