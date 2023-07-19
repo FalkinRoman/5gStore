@@ -10,7 +10,7 @@
 
             </h4>
             <ul class="list-group mb-3">
-                @foreach($order->products as $product)
+                @foreach($order->products()->with('category')->get() as $product)
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div class="mr-3">
                             <a href="{{ route('product', [$product->category->code, $product->code]) }}">
@@ -52,7 +52,7 @@
                 <span class="text-dark pr-3">Общая стоимость:</span>
                 <span style="margin-left: 10px"
 
-                      class="badge bg-primary rounded-pill">{{ $order->getFullPrice() }} руб.</span>
+                      class="badge bg-primary rounded-pill">{{ $order->getFullSum() }} руб.</span>
 
             </h4>
             <div class="d-flex justify-content-end">

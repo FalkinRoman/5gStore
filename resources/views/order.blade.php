@@ -10,7 +10,7 @@
             </h1>
             <h4 class="d-flex justify-content-center align-items-center mb-3">
                 <span class="text-dark pr-3">Общая стоимость:</span>
-                <span style="margin-left: 10px" class="badge bg-primary rounded-pill">{{ $order->getFullPrice() }} руб.</span>
+                <span style="margin-left: 10px" class="badge bg-primary rounded-pill">{{ $order->calculateFullSum() }} руб.</span>
             </h4>
             <h6 class="d-flex justify-content-center align-items-center mb-3">
                 <span  class="text-secondary">Укажите свое имя и телефон, чтобы наш менеджер смог с вами связаться.  </span>

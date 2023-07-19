@@ -24,3 +24,4 @@
         <a href="{{ route('product', [$product->category->code, $product->code]) }}" class="btn btn-primary border border-secondary text-secondary bg-white">Подробнее</a>
     </div>
 </div>
+

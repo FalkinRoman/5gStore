@@ -38,6 +38,23 @@ class Product extends Model
     }
 
 
+    //Scope - добавляет к запросу значения поиска
+    public function scopeHit($query)
+    {
+        return $query->where('hit', 1);
+    }
+
+    public function scopeNew($query)
+    {
+        return $query->where('new', 1);
+    }
+
+    public function scopeRecommend($query)
+    {
+        return $query->where('recommend', 1);
+    }
+
+
     //Используем в верстке для отображения или нет
     public function isHit() {
         return $this->hit === 1;

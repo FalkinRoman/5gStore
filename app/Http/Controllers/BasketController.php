@@ -46,6 +46,8 @@ class BasketController extends Controller
             session()->flash('warning', 'Случилась ошибка!');
         }
 
+        Order::eraceOrderSum();
+
         return redirect()->route('index');
     }
 
@@ -82,6 +84,8 @@ class BasketController extends Controller
 
         //функционал для уведомления после добавления товара
         $product = Product::find($productId);
+        //Добавляем продукт в функцию подсчета суммы
+        Order::changeFullSum($product->price);
         session()->flash('success', 'Добавлен товар ' . $product->name);
 
         // Возвращаем страницу корзины с товарами
@@ -108,6 +112,10 @@ class BasketController extends Controller
         }
         //функционал для уведомления после удаления товара с корзины
         $product = Product::find($productId);
+
+        //убираем продукт в функцию подсчета суммы
+        Order::changeFullSum(-$product->price);
+
         session()->flash('warning', 'Удален товар ' . $product->name);
         return redirect()->route('basket');
     }

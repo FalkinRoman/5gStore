@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function home() {
-        $orders = Auth::user()->orders()->where('status', 1)->paginate(10);
+        $orders = Auth::user()->orders()->active()->paginate(10);
         return view('home', compact('orders'));
     }
 
