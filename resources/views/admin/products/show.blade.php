@@ -41,7 +41,11 @@
                 </tr>
                 <tr>
                     <td>Цена</td>
-                    <td>{{ $product->price }} руб.</td>
+                    <td>{{ $product->price }}  ₽</td>
+                </tr>
+                <tr>
+                    <td>Колличество товаров</td>
+                    <td>{{ $product->count}} шт</td>
                 </tr>
                 <tr>
                     <td>Лейблы</td>

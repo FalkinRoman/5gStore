@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['code','category_id', 'name', 'description', 'image', 'price', 'hit', 'new', 'recommend'];
+    protected $fillable = ['code','category_id', 'name', 'description', 'image', 'price', 'hit', 'new', 'recommend', 'count'];
     //функция возвращает категорию продукта
     public function category() {
         return $this->belongsTo(Category::class);
@@ -39,6 +39,10 @@ class Product extends Model
 
 
     //Scope - добавляет к запросу значения поиска
+    public function scopeByCode($query, $code)
+    {
+        return $query->where('code', $code);
+    }
     public function scopeHit($query)
     {
         return $query->where('hit', 1);
@@ -67,4 +71,10 @@ class Product extends Model
     public function isRecommend() {
         return $this->recommend === 1;
     }
+
+    public function isAvailable()   //есть ли товар в наличии
+    {
+        return $this->count > 0;
+    }
+
 }

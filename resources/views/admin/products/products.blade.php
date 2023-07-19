@@ -13,6 +13,7 @@
                 <th scope="col">Код</th>
                 <th scope="col">Название</th>
                 <th scope="col">Категория</th>
+                <th scope="col">Колличество</th>
                 <th scope="col">Цена</th>
                 <th scope="col">Действия</th>
             </tr>
@@ -25,14 +26,15 @@
                     <td>{{ $product->code }}</td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->category->name}}</td>
-                    <td>{{ $product->price}} руб.</td>
+                    <td>{{ $product->count}} шт</td>
+                    <td>{{ $product->price}}  ₽</td>
                     <td>
                         <form action="{{ route('admin.products.destroy', $product->id ) }}" method="POST" >
                         <a href="{{ route('admin.products.show', $product->id) }}" class="btn btn-success">Открыть</a>
                         <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-warning">Редактировать</a>
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Удалить</button>
+                            <button type="submit" onclick="return confirm('Вы точно хотите удалить товар?')" class="btn btn-danger">Удалить</button>
                         </form>
                     </td>
                 </tr>

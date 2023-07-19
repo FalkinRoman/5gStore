@@ -3,14 +3,14 @@ body {
 }
 
 
-#pagination>nav:nth-child(1) >:nth-child(1){
-    display: none;
-}
+/*#pagination>nav:nth-child(1) >:nth-child(1){*/
+/*    display: none;*/
+/*}*/
 
-#pagination>nav:nth-child(1) >:nth-child(2)>:nth-child(1){
-    display: none;
-}
+/*#pagination>nav:nth-child(1) >:nth-child(2)>:nth-child(1){*/
+/*    display: none;*/
+/*}*/
 
-#pagination svg{
-    width: 20px !important;
-}
+/*#pagination svg{*/
+/*    width: 20px !important;*/
+/*}*/

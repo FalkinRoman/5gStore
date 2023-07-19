@@ -36,7 +36,7 @@
             <div class="text-end">
                 @guest('web')
                 <a href="{{ route('login') }}" type="button" class="btn btn-outline-light me-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Войти</font></font></a>
-                <a href="{{ route('register') }}" type="button" class="btn btn-warning"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Зарегистрироваться</font></font></a>
+                <a href="{{ route('register') }}" type="button" class="btn btn-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Зарегистрироваться</font></font></a>
                 @endguest
 
                 @auth('web')

@@ -94,6 +94,17 @@
                 </div>
                 @enderror
             </div>
+            <div class="form-group mt-4">
+                <label for="count">Колличество товаров:</label>
+                <input name="count" type="text" class="form-control @error('count') is-invalid @enderror"
+                       id="count" placeholder="Введите кол-во"
+                       value="{{ old('count', isset($product) ? $product->count : null) }}">
+                @error('count')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
 
             <div class="form-group mt-4">
                 <h4>Дополнительные характеристики:</h4>

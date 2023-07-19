@@ -28,6 +28,7 @@ class ProductRequest extends FormRequest
             'name' => 'required|min:3|max:255',
             'description' => 'required|min:3',
             'price' => 'required|numeric|min:1',
+            'count' => 'required|numeric|min:0',
         ];
         //добавляем уникальность только если роут будет named, this - FormRequest  внашем случае
         if ($this->route()->named('admin.products.update')) {
