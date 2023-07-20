@@ -14,6 +14,7 @@ class HomeController extends Controller
     }
 
     public function show(Order $order) {
-        return view('admin.orders.show', compact('order'));
+        $products = $order->products()->withTrashed()->get();   //ищем все продукты но также и удаленные файлы забираем
+        return view('admin.orders.show', compact('order', 'products'));
     }
 }

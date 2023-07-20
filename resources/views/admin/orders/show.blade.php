@@ -18,7 +18,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($order->products as $product)
+            @foreach($products as $product)
                 <tr>
                     <td>
                         <a target="_blank" href="{{ route('product', [$product->category->code, $product->code]) }}">

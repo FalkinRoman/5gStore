@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+    use SoftDeletes; //траит на удаление товара (оставляет его в базе, но записваерт в поле delete_at время  и дату, позволяет использовать функционал класса)
+
     protected $fillable = ['code','category_id', 'name', 'description', 'image', 'price', 'hit', 'new', 'recommend', 'count'];
     //функция возвращает категорию продукта
     public function category() {
@@ -74,7 +77,7 @@ class Product extends Model
 
     public function isAvailable()   //есть ли товар в наличии
     {
-        return $this->count > 0;
+        return !$this->trashed() && $this->count > 0;
     }
 
 }

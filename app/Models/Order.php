@@ -24,7 +24,7 @@ class Order extends Model
     public function calculateFullSum() //считает общую стоимость заказа
     {
         $sum = 0;
-        foreach ($this ->products as $product) {
+        foreach ($this ->products()->withTrashed()->get() as $product) {
             $sum += $product->getPriceForCount();
         }
         return $sum;
