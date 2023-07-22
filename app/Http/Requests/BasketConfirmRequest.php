@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class BasketConfirmRequest extends FormRequest
 {
@@ -23,11 +24,24 @@ class BasketConfirmRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $isUserAuthenticated = auth()->check();
+
+        $rules = [
             'name' => 'required|min:3|max:255',
             'phone' => 'required|min:11|numeric',
-            'email' => 'required|email|unique:users'
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore(auth()->id()) // Игнорируем текущего авторизованного пользователя
+            ],
         ];
+
+        if ($isUserAuthenticated) {
+            // Если пользователь авторизован, удаляем правило 'unique' для поля 'email'
+            unset($rules['email']);
+        }
+
+        return $rules;
     }
 
 
