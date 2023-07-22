@@ -20,14 +20,35 @@
                 <div class="row g-3">
                     <div class="mb-3">
                         <label for="nameInput" class="form-label">Имя</label>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Введите имя">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" placeholder="Введите имя" value={{ old('name') }}>
+                        @error('name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="phoneInput" class="form-label">Номер телефона</label>
-                        <input type="tel" class="form-control" name="phone" id="phone" placeholder="Введите номер телефона">
+                        <input type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" placeholder="Введите номер телефона" value={{ old('phone') }}>
+                        @error('phone')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
+                    @guest('web')
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="Введите email" value={{ old('email') }}>
+                            @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
 
+                    @endguest
 
                     <button class="w-100 btn btn-primary btn-lg" type="submit">Потвердить заказ</button>
                 </div>

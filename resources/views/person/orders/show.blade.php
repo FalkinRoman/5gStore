@@ -21,13 +21,13 @@
             @foreach($order->products as $product)
                 <tr>
                     <td>
-                        <a target="_blank" href="{{ route('product', $product) }}">
+                        <a target="_blank" href="{{ route('product', [$product->category->code, $product->code]) }}">
                             <img style="height:80px; width: 60px;" src="{{ Storage::url($product->image) }}">
                             {{ $product-> name }}
                         </a>
                     </td>
-                    <td> {{ $product->pivot->count }} шт.</td>
-                    <td>{{ $product->price }} руб.</td>
+                    <td> {{ $product->pivot->count }} шт</td>
+                    <td>{{ $product->price }} ₽</td>
                     <td>{{ $product->getPriceForCount() }} руб.</td>
                 </tr>
             @endforeach
@@ -35,7 +35,7 @@
                     <td>Общая стоимость</td>
                     <td></td>
                     <td></td>
-                    <td><b>{{ $order->getFullPrice() }} руб.</b></td>
+                    <td><b>{{ $order->calculateFullSum() }} руб.</b></td>
                 </tr>
             </tbody>
 
