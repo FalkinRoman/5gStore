@@ -27,7 +27,7 @@
                         <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-warning">Редактировать</a>
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Удалить</button>
+                            <button type="submit" onclick="return confirm('Вы точно хотите удалить категорию?')" class="btn btn-danger">Удалить</button>
                         </form>
                     </td>
                 </tr>

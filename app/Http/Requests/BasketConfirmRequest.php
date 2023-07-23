@@ -28,7 +28,11 @@ class BasketConfirmRequest extends FormRequest
 
         $rules = [
             'name' => 'required|min:3|max:255',
-            'phone' => 'required|min:11|numeric',
+            'phone' => [
+                'required',
+                'string',
+                'regex:/^(\+7|8)?[\s(-]?9\d{2}[\s)-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/'
+            ],
             'email' => [
                 'required',
                 'email',
@@ -52,6 +56,7 @@ class BasketConfirmRequest extends FormRequest
             'min' => 'Поле :attribute должно иметь минимум :min символов',
             'unique' => 'К сожалению :attribute уже занят',
             'email' => 'Введите правильно email',
+            'regex' => 'Пример: +79998887766, 89998887766'
         ];
     }
 }

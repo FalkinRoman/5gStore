@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пример письма</title>
+    <title>Уведомление о появлении товара</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
     <style>
         /* Общие стили для письма */
@@ -43,8 +43,7 @@
         }
 
         /* Стили для столбца цены */
-        td:nth-child(4),
-        td:nth-child(5) {
+        td:nth-child(3) {
             word-break: break-all;
         }
 
@@ -76,36 +75,30 @@
 </head>
 <body>
 <div>
-    <h1>Здравствуйте, {{ $name }}!</h1>
-    <p>Спасибо за ваш заказ в нашем интернет-магазине.</p>
+    <h1>Уведомление о появлении товара</h1>
+    <p>Уважаемый клиент,</p>
+    <p>Хорошие новости! Товар <strong>{{ $product->name }}</strong> появился в наличии.</p>
     <h2>Информация о заказе:</h2>
     <table>
         <thead>
         <tr>
             <th>Фото товара</th>
             <th>Название товара</th>
-            <th>Кол-во</th>
             <th>Цена</th>
-            <th>Стоимость</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($order->products as $product)
-            <tr>
-                <td><img src="https://id-store.ru/upload/resize_cache/iblock/3b8/704_692_1/d1ndzxym6383txz5zeygq04t4bxtvtxy.png" alt="Фото товара"></td>
-                <td>{{ $product->name }}</td>
-                <td>{{ $product->pivot->count }}</td>
-                <td>{{ $product->price }} ₽</td>
-                <td>{{ $product->getPriceForCount() }} ₽</td>
-            </tr>
-        @endforeach
-        <!-- Дополнительные товары здесь -->
+        <tr>
+            <td><img src="https://id-store.ru/upload/resize_cache/iblock/3b8/704_692_1/d1ndzxym6383txz5zeygq04t4bxtvtxy.png" alt="Фото товара"></td>
+            <td>{{ $product->name }}</td>
+            <td>{{ $product->price }} ₽</td>
+        </tr>
         </tbody>
     </table>
-    <p><strong>Общая стоимость: {{ $fullSum}} ₽</strong></p>
-    <p>Спасибо за ваш заказ. Пожалуйста, ожидайте доставку.</p>
+    <p>Вы можете узнать больше подробностей, перейдя по следующей ссылке:</p>
+    <p><a href="{{ route('product', [$product->category->code, $product->code]) }}">Узнать подробности о товаре</a></p>
+    <p>Если у вас возникли вопросы, не стесняйтесь обращаться к нам.</p>
     <p>С уважением,<br>5G Store</p>
 </div>
 </body>
 </html>
-

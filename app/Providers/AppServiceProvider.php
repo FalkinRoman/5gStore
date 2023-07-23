@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Product;
+use App\Observers\ProductObserver;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
@@ -31,5 +33,7 @@ class AppServiceProvider extends ServiceProvider
 /*            return "<?php echo Route::currentRouteNamed($route) ? 'class = \"text-white\"' : ''  ?>";*/
 //        });
         Paginator::useBootstrap(); //пагинация для bootstrap по умолчанию tailvind
+
+        Product::observe(ProductObserver::class); //observer - для изменения продуктов (наблюдатель)
     }
 }
