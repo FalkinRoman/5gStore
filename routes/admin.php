@@ -10,6 +10,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('logout', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
+    Route::resource('cryptocurrencies', \App\Http\Controllers\Admin\CryptocurrencyController::class);
 });
 
 Route::middleware('guest:admin')->group(function () {

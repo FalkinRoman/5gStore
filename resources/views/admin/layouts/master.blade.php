@@ -25,7 +25,7 @@
                 <li><a href="{{ route('admin.categories.index') }}" class="nav-link px-2 text-secondary @if(Route::currentRouteNamed('admin.categories.index')) text-white  @endif" style="vertical-align: inherit;" style="vertical-align: inherit;">Категории</a></li>
                 <li><a href="{{ route('admin.products.index') }}" class="nav-link px-2 text-secondary @if(Route::currentRouteNamed('admin.products.index')) text-white  @endif" style="vertical-align: inherit;" style="vertical-align: inherit;">Товары</a></li>
                 <li><a href="{{ route('admin.orders') }}" class="nav-link px-2 text-secondary @if(Route::currentRouteNamed('admin.orders')) text-white  @endif" style="vertical-align: inherit;" style="vertical-align: inherit;">Заказы</a></li>
-
+                <li><a href="{{ route('admin.cryptocurrencies.index') }}" class="nav-link px-2 text-secondary @if(Route::currentRouteNamed('admin.cryptocurrencies.index')) text-white  @endif" style="vertical-align: inherit;" style="vertical-align: inherit;">Криптовалюты</a></li>
 
             </ul>
 
