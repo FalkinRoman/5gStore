@@ -30,6 +30,26 @@ class Order extends Model
         return $sum;
     }
 
+    public function calculateTotalSumForCrypto()//итог суммы криптовалют в заказе
+   {
+       $cryptoSumArray = [];
+
+       foreach ($this->products()->withTrashed()->get() as $product) {
+           $cryptoSymbol = $product->cryptocurrencies->first()->image; // Use 'image' instead of 'symbol'
+           $priceForCrypto = $product->getPriceForCrypto();
+
+           if (isset($cryptoSumArray[$cryptoSymbol])) {
+               $cryptoSumArray[$cryptoSymbol] += $priceForCrypto;
+           } else {
+               $cryptoSumArray[$cryptoSymbol] = $priceForCrypto;
+           }
+       }
+
+       return $cryptoSumArray;
+   }
+
+
+
     public static function changeFullSum($productPrice) //изменение суммы заказа
     {
         $sum = self::getFullSum() + $productPrice;

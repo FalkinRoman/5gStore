@@ -34,6 +34,13 @@ class Product extends Model
         return $this->price;
     }
 
+    public function getPriceForCrypto() {    //общая стоимость для колличества кэшбэков криптовалюты
+        if(! is_null($this->pivot)){
+            return $this->pivot->count * $this->calculateCashbackAmount();
+        }
+        return $this->calculateCashbackAmount();
+    }
+
     //Мутаторы - автоматически записывает значения в базу данных названных атрибутов запись функции начинается с  setNewAttribute($value)
     public function setNewAttribute($value) {
         $this->attributes['new'] =$value === 'on' ? 1: 0;
