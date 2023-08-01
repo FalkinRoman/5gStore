@@ -63,6 +63,22 @@
                         </div>
                     </td>
                 </tr>
+                <tr>
+                    <td>Криптовалюта</td>
+                    <td>
+                        @if($cryptocurrency)
+                            <img style="height: 30px; width: 30px;" src="{{ Storage::url($cryptocurrency->image) }}" alt="{{ $cryptocurrency->name }}">
+                            {{ $cryptocurrency->name }}
+                        @else
+                            Не указано
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <td>Процент кэшбэка</td>
+                    <td>{{ $cashbackPercentage ?? 'Не указано' }}</td>
+                </tr>
+
             </tbody>
 
         </table>

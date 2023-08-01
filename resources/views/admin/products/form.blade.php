@@ -123,6 +123,34 @@
                 @endforeach
             </div>
 
+            <div class="form-group mt-4">
+                <label for="cryptocurrency_id">Выберите криптовалюту:</label>
+                <select class="form-control" id="cryptocurrency_id" name="cryptocurrency_id">
+                    <option value="">Выберите криптовалюту</option>
+                    @foreach($cryptocurrencies as $cryptocurrency)
+                        <option value="{{ $cryptocurrency->id }}"
+                                @isset($product)
+                                    @if($product->cryptocurrencies->contains($cryptocurrency->id))
+                                        selected
+                            @endif
+                            @endisset
+                        >{{ $cryptocurrency->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group mt-4">
+                <label for="cashback_percentage">Процент кэшбэка:</label>
+                <input name="cashback_percentage" type="text" class="form-control @error('cashback_percentage') is-invalid @enderror"
+                       id="cashback_percentage" placeholder="Введите процент кэшбэка"
+                       value="{{ old('cashback_percentage', isset($product) && $product->cashbacks ? $product->cashbacks->first()->cashback_percentage : null) }}">
+                @error('cashback_percentage')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
             <button type="submit" class="btn btn-primary mt-4">Сохранить</button>
         </form>
     </div>

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Cache;
 
 class Product extends Model
 {
@@ -19,6 +20,12 @@ class Product extends Model
     public function orders() {
         return $this->belongsToMany(Order::class);
     }
+
+    public function cashbacks() //получение всех кэшбэков для данного товара
+    {
+        return $this->hasMany(ProductCashback::class, 'product_id');
+    }
+
 
     public function getPriceForCount() {    //общая стоимость для колличества товаров
         if(! is_null($this->pivot)){
@@ -78,6 +85,55 @@ class Product extends Model
     public function isAvailable()   //есть ли товар в наличии
     {
         return !$this->trashed() && $this->count > 0;
+    }
+
+    // Отношение "многие-ко-многим" с моделью Cryptocurrency через промежуточную таблицу ProductCashback
+    public function cryptocurrencies() //получить всю криптовалюту
+    {
+        return $this->belongsToMany(Cryptocurrency::class, 'product_cashbacks')
+            ->withPivot('cashback_percentage');
+    }
+
+
+
+    //Метод для получения кешбэка в криптовалюте (главный)
+    public function calculateCashbackAmount()
+    {
+        // Получаем процент кешбэка и считаем его в рублях от цены товара
+        if ($this->cashbacks()->exists()) {
+            $cashbackPercentage = $this->cashbacks->first()->cashback_percentage;
+            $cashbackInRubles = $this->price * ($cashbackPercentage / 100);
+
+            // Проверяем, есть ли закэшированное значение цены USDT к рублю
+            $usdToRubRate = Cache::remember('usdt_to_rub_rate', now()->addMinutes(5), function () {
+                $url = 'https://api.binance.com/api/v3/ticker/price?symbol=USDTRUB';
+                $data = file_get_contents($url);
+                $data = json_decode($data, true);
+                return (float) $data['price'];
+            });
+
+            // Переводим кэшбэк из рублей в доллары
+            $cashbackInUSD = $cashbackInRubles / $usdToRubRate;
+
+            // Получаем криптовалюту для данного товара
+            $cryptocurrencies = $this->cryptocurrencies;
+
+            // Получаем символ первой связанной криптовалюты из коллекции
+            $cryptocurrencySymbol = $cryptocurrencies->first()->symbol;
+
+            // Получаем текущую цену криптовалюты по символу
+            $cryptocurrencyPrice = Cryptocurrency::getCurrentPriceBySymbol($cryptocurrencySymbol);
+
+            // Получаем кол-во монет в кэшбэк
+            $cashbackInCoin = $cashbackInUSD / $cryptocurrencyPrice;
+
+            // Округляем результат до четырех десятичных знаков
+            $cashbackInCoin = number_format($cashbackInCoin, 4);
+
+            return $cashbackInCoin;
+        }
+
+        return 0;
     }
 
 }
