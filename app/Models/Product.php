@@ -27,6 +27,8 @@ class Product extends Model
     }
 
 
+
+
     public function getPriceForCount() {    //общая стоимость для колличества товаров
         if(! is_null($this->pivot)){
             return $this->pivot->count * $this->price;

@@ -12,15 +12,16 @@
         @endif
     </div>
     <div class="card-body">
-        <p class="card-title">{{$product->name}}</p>
+        <p class="card-title">{{ $product->name }}</p>
         <p class="card-text"><b>{{ $product->price }} ₽</b></p>
-        <p class="card-text">{{$product->category->name}}</p>
+        <p class="card-text">{{ $product->category->name }}</p>
+        @foreach ($product->cryptocurrencies as $cryptocurrency)
+            <div class="d-flex justify-content-end m-2">
+                <img style="height: 30px; width: 30px;" src="{{ Storage::url($cryptocurrency->image) }}" alt="{{ $cryptocurrency->name }}">
+                <p class="card-text">{{ $product->calculateCashbackAmount($cryptocurrency->id) }} {{$cryptocurrency->small_name}}</p>
+            </div>
+        @endforeach
     </div>
-    <div class="d-flex justify-content-end m-2">
-        <img style="height: 30px; width: 30px;" src="{{ Storage::url($product->cryptocurrencies->first()->image) }}" >
-        <p class="card-text">{{$product->calculateCashbackAmount()}}</p>
-    </div>
-
     <div class="card-footer d-flex justify-content-between">
         <form action="{{ route('basket-add', $product->id) }}" method="POST">
             @csrf
@@ -33,4 +34,3 @@
         <a href="{{ route('product', [$product->category->code, $product->code]) }}" class="btn btn-primary border border-secondary text-secondary bg-white">Подробнее</a>
     </div>
 </div>
-

@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Wallet extends Model
 {
+    protected $fillable = [
+        'user_id',
+        'cryptocurrency_id',
+        'balance',
+    ];
     public function user() // Получить пользователя, которому принадлежит этот кошелек.
     {
         return $this->belongsTo(User::class);

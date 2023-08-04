@@ -51,4 +51,9 @@ class User extends Authenticatable
         return $this->hasMany(Wallet::class);
     }
 
+    public function cashbackHistory()
+    {
+        return $this->hasMany(CashbackHistory::class, 'user_id');
+    }
+
 }

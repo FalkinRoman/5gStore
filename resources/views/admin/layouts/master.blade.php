@@ -43,6 +43,18 @@
     </div>
 </header>
 <main>
+    {{--    уведомление об удачном выполнении или добавлении--}}
+    @if(session()->has('success'))
+        <div class="alert alert-success d-flex  align-items-center justify-content-center" role="alert">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+    {{--    уведомление об ошибке или удалении--}}
+    @if(session()->has('warning'))
+        <div class="alert alert-danger d-flex  align-items-center justify-content-center" role="alert">
+            {{ session() -> get('warning') }}
+        </div>
+    @endif
 
 
     @yield('admin.content')

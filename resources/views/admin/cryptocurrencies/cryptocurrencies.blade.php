@@ -12,6 +12,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Лого</th>
                 <th scope="col">Название</th>
+                <th scope="col">Краткое название</th>
                 <th scope="col">Символ</th>
                 <th scope="col">Цена</th>
                 <th scope="col">Действия</th>
@@ -23,6 +24,7 @@
                     <th scope="row">{{ $cryptocurrency->id }}</th>
                     <td><img style="height:24px; width: 24px;" src="{{ Storage::url($cryptocurrency->image) }} "></td>
                     <td>{{ $cryptocurrency->name }}</td>
+                    <td>{{ $cryptocurrency->small_name }}</td>
                     <td>{{ $cryptocurrency->symbol }}</td>
                     <td>{{ $cryptocurrency->getCurrentPriceBySymbol($cryptocurrency->symbol) }} $</td>
                     <td>

@@ -31,7 +31,7 @@
 
             <div class="form-group mt-4">
                 <label for="symbol">Символ:</label>
-                <input name="symbol" type="text" class="form-control @error('symbol') is-invalid @enderror" id="symbol" placeholder="Введите символ" value=" {{ old('symbol', isset($cryptocurrency) ? $cryptocurrency->symbol: null) }}">
+                <input name="symbol" type="text" placeholder="Введите символ" class="form-control @error('symbol') is-invalid @enderror" id="symbol" value=" {{ old('symbol', isset($cryptocurrency) ? $cryptocurrency->symbol: null) }}">
                 @error('symbol')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -42,6 +42,15 @@
                 <label for="name">Название:</label>
                 <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Введите название" value="{{ old('name', isset($cryptocurrency) ? $cryptocurrency->name: null) }}">
                 @error('name')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+            <div class="form-group mt-2">
+                <label for="small_name">Короткое название:</label>
+                <input name="small_name" type="text" class="form-control @error('small_name') is-invalid @enderror" id="small_name" placeholder="Введите короткое название" value="{{ old('small_name', isset($cryptocurrency) ? $cryptocurrency->small_name: null) }}">
+                @error('small_name')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>

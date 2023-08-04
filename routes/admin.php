@@ -11,6 +11,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
     Route::resource('cryptocurrencies', \App\Http\Controllers\Admin\CryptocurrencyController::class);
+
+    Route::post('confirm_order/{orderId}', [\App\Http\Controllers\Admin\HomeController::class, 'confirmOrderCashback'])->name('confirm.order');
+
 });
 
 Route::middleware('guest:admin')->group(function () {

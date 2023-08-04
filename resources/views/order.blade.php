@@ -15,10 +15,11 @@
             <div class="d-flex flex-column align-items-center">
                 <h5>Вы получаете кэшбэк в криптовалюте</h5>
                 <div class="d-flex ">
-                    @foreach ($order->calculateTotalSumForCrypto() as $cryptoImage => $totalSum)
+                    @foreach ($order->calculateTotalSumForCrypto() as $cryptoImage => $cryptoInfo)
                         <div class="d-flex">
-                            <img class="m-1" style="height: 30px; width: 30px;" src="{{ Storage::url($cryptoImage) }}" >
-                            <p class="m-1" >{{ $totalSum }}</p>
+                            <img class="m-1" style="height: 30px; width: 30px;" src="{{ Storage::url($cryptoImage) }}">
+                            <p class="m-1">{{ $cryptoInfo['totalSum'] }}</p>
+                            <p class="m-1">{{ $cryptoInfo['smallName'] }}</p> <!-- Add this line -->
                         </div>
                     @endforeach
                 </div>

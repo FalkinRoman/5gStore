@@ -41,7 +41,7 @@
                             </div>
                             <div class="d-flex justify-content-end m-2">
                                 <img style="height: 30px; width: 30px;" src="{{ Storage::url($product->cryptocurrencies->first()->image) }}" >
-                                <p class="card-text">{{$product->getPriceForCrypto()}}</p>
+                                <p class="card-text">{{$product->getPriceForCrypto()}} {{$product->cryptocurrencies->first()->small_name}} </p>
                             </div>
                             <div style="width: 100px;" class="d-flex ml-3 flex-column">
                                 <span class="text-muted">Стоимость:</span>

@@ -13,6 +13,7 @@ class Cryptocurrency extends Model
         'symbol',
         'name',
         'image',
+        'small_name',
     ];
 
     public function wallets() //Получить кошельки для данной криптовалюты.

@@ -26,6 +26,7 @@ class CryptocurrencyRequest extends FormRequest
         $rules = [
             'symbol' => 'required|string|max:10',
             'name' => 'required|string|max:255',
+            'small_name' => 'required|string|max:10',
         ];
 
         if ($this->route()->named('admin.cryptocurrencies.update')) {

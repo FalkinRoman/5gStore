@@ -14,6 +14,11 @@ class Order extends Model
         return $this->belongsToMany(Product::class)->withPivot('count')->withTimestamps();
     }
 
+    public function cashbackHistory()
+    {
+        return $this->hasMany(CashbackHistory::class, 'order_id');
+    }
+
     //scope - для заказов в админе и юзере
     public function scopeActive($query)
     {
@@ -30,23 +35,31 @@ class Order extends Model
         return $sum;
     }
 
-    public function calculateTotalSumForCrypto()//итог суммы криптовалют в заказе
-   {
-       $cryptoSumArray = [];
+  public function calculateTotalSumForCrypto() //итог суммы кэшбэка криптовалют в заказе
+  {
+      $cryptoSumArray = [];
 
-       foreach ($this->products()->withTrashed()->get() as $product) {
-           $cryptoSymbol = $product->cryptocurrencies->first()->image; // Use 'image' instead of 'symbol'
-           $priceForCrypto = $product->getPriceForCrypto();
+      foreach ($this->products()->withTrashed()->get() as $product) {
+          $cryptoSymbol = $product->cryptocurrencies->first()->image;
+          $priceForCrypto = $product->getPriceForCrypto();
+          $cryptoSmallName = $product->cryptocurrencies->first()->small_name;
+          $cryptoId = $product->cryptocurrencies->first()->id; // Добавьте это
 
-           if (isset($cryptoSumArray[$cryptoSymbol])) {
-               $cryptoSumArray[$cryptoSymbol] += $priceForCrypto;
-           } else {
-               $cryptoSumArray[$cryptoSymbol] = $priceForCrypto;
-           }
-       }
+          if (isset($cryptoSumArray[$cryptoSymbol])) {
+              $cryptoSumArray[$cryptoSymbol]['totalSum'] += $priceForCrypto;
+          } else {
+              $cryptoSumArray[$cryptoSymbol] = [
+                  'totalSum' => $priceForCrypto,
+                  'smallName' => $cryptoSmallName,
+                  'cryptocurrency_id' => $cryptoId,
+              ];
+          }
+      }
 
-       return $cryptoSumArray;
-   }
+      return $cryptoSumArray;
+  }
+
+
 
 
 
@@ -83,5 +96,7 @@ class Order extends Model
         }
 
     }
+
+
 
 }
