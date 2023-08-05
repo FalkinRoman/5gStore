@@ -29,9 +29,12 @@
 
             </ul>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <input type="search" class="form-control form-control-dark text-bg-white" placeholder="Поиск..." aria-label="Поиск">
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="{{ route('index') }}" method="GET">
+                <input type="search" name="search" class="form-control form-control-dark text-bg-white" placeholder="Поиск..." aria-label="Поиск" value="{{ request('search') }}">
+
             </form>
+
+
 
             <div class="text-end">
                 @guest('web')

@@ -12,8 +12,9 @@ use Illuminate\Http\Request;
 
 class MainConroller extends Controller
 {
-    public function index(ProductsFilterRequest $request) {
-        $productsQuery = Product::with(['category', 'cryptocurrencies', 'cashbacks']); // Предварительная загрузка 'product_cashbacks'
+    public function index(ProductsFilterRequest $request)
+    {
+        $productsQuery = Product::with(['category', 'cryptocurrencies', 'cashbacks']); // Предварительная загрузка связей
 
         if ($request->filled('price_from')) {
             $productsQuery->where('price', '>=', $request->price_from);
@@ -23,13 +24,18 @@ class MainConroller extends Controller
             $productsQuery->where('price', '<=', $request->price_to);
         }
 
-        foreach (['hit','new','recommend'] as $field) {
+        foreach (['hit', 'new', 'recommend'] as $field) {
             if ($request->has($field)) {
                 $productsQuery->$field();
             }
         }
 
-        $products = $productsQuery->paginate(10)->withQueryString();
+        if ($request->filled('search')) {    //поиск для продуктов
+            $searchTerm = $request->input('search');
+            $productsQuery->where('name', 'like', '%' . $searchTerm . '%');
+        }
+
+        $products = $productsQuery->paginate(10)->appends($request->query());
         return view('index', compact('products'));
     }
 
@@ -57,6 +63,16 @@ class MainConroller extends Controller
 
         return redirect()->back()->with('success', 'Спасибо, мы сообщим вам о поступлении товара');
     }
+
+
+//    public function search(Request $request) //поиск для продуктов
+//    {
+//        $query = $request->input('query');
+//
+//        $products = Product::where('name', 'like', "%$query%")->get();
+//
+//        return view('products.search', compact('products'));
+//    }
 
 
 

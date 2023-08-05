@@ -9,7 +9,8 @@ class HomeController extends Controller
 {
     public function home() {
         $orders = Auth::user()->orders()->active()->paginate(10);
-        return view('home', compact('orders'));
+        $wallets = Auth::user()->wallets()->paginate(10);
+        return view('home', compact('orders', 'wallets'));
     }
 
     public function show($orderId) {
@@ -26,4 +27,10 @@ class HomeController extends Controller
         return view('person.orders.show', compact('order'));
 
     }
+
+
+
+
+
+
 }
