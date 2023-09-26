@@ -5,7 +5,7 @@ namespace App\Observers;
 use App\Models\Product;
 use App\Models\Subscription;
 
-class ProductObserver
+class  ProductObserver
 //используется и автоматически вызывается класс когда что-то изменилось в модели product
 //Observer - регистрируется в AppServiceProvider чтобы начал работать
 {

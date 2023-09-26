@@ -17,6 +17,13 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    //функция возвращает брэнд продукта
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+
     public function orders() {
         return $this->belongsToMany(Order::class);
     }

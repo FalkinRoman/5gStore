@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+
+    public function main() {
+        return view('admin.main.index');
+    }
     public function orders() {
         $orders = Order::active()->paginate(10);
         return view('admin.orders.index', compact('orders'));
