@@ -326,6 +326,7 @@ maxWindowButton.addEventListener("click", () => {
 
         }, 500);
     } else {
+        containerContent.style.margin="0px 384px 0px 112px"
         leftBox.style.height = '0px';
         leftBox2.classList.add("hidden2");
         leftBox3.style.width = "64px";
@@ -333,7 +334,6 @@ maxWindowButton.addEventListener("click", () => {
         imgLogo1.style.opacity = 0;
         imgLogo1.style.margin = "0px";
         textBars.forEach(element => element.style.opacity = 0);
-        containerContent.style.margin="0px 384px 0px 112px"
         containerCenterTop.style.left="112px"
         isOpenIcon.style.display = "none";
         noIsOpenIcon.style.display = "block";
@@ -363,12 +363,16 @@ maxWindowButton.addEventListener("click", () => {
 
 
 
-//подложка под категории
+//подложка под категории и меню
 document.addEventListener("DOMContentLoaded", function() {
     const boxCategories = document.querySelectorAll(".box-category");
     const substrateCategory = document.querySelector(".substrate-category");
     const closeIcon = document.querySelector(".substrate-category-closeIcon");
     const leftBox = document.querySelector(".left-box");
+    const categoryBoxBrands = document.querySelector(".category-boxBrands");
+    const categoryNameElement = document.getElementById("category-name");
+    const boxSubcategoryBrands = document.getElementById("box-subcategory-brands");
+    const tmplBrandsSubcategory = document.getElementById("tmpl-brand-subcategory").innerHTML;
 
     // Обработчик клика для каждого элемента .box-category
     boxCategories.forEach(function(boxCategory) {
@@ -379,6 +383,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 category.querySelector(".box-category-img-hover").style.opacity = "";
                 category.querySelector(".textCategoryBar2").style.display = "none";
             });
+
+            // Скрываем .category-boxBrands
+            categoryBoxBrands.style.left = "24px";
+            setTimeout(() => {
+                categoryBoxBrands.style.display = "none";
+            }, 400);
 
             // Применяем стили к текущему .box-category
             const textCategoryBar = boxCategory.querySelector(".textCategoryBar");
@@ -393,6 +403,40 @@ document.addEventListener("DOMContentLoaded", function() {
             substrateCategory.style.display = "block";
             // Устанавливаем z-index для .left-box-1 и .left-box-2
             leftBox.style.zIndex = "5";
+
+            // Показываем .category-boxBrands и устанавливаем стили
+            setTimeout(() => {
+                categoryBoxBrands.style.display = "block";
+                setTimeout(() => {
+                    categoryBoxBrands.style.left = "284px";
+                },10);
+            }, 400);
+
+            // Получите ID выбранной категории из атрибута data-category-id
+                const categoryId = boxCategory.getAttribute("data-category-id");
+            // Обновляем название категории
+            setTimeout(function() {
+            categoryNameElement.textContent = textCategoryBar.textContent;
+
+                axios.get(`/get-subcategories-and-brands/${categoryId}`)
+                .then(function (response) {
+                    const data = response.data;
+                    console.log(data)
+                    // очищаем контейнер
+                    boxSubcategoryBrands.innerHTML = '';
+                    if (data["subcategories"].length > 0) {
+                        for (let i = 0; i < data["subcategories"].length; i++) {
+                            boxSubcategoryBrands.innerHTML += tmplBrandsSubcategory.replace("${img_brand_subcategory}",data["subcategories"][i]['image'])
+                                .replace("${name_brand_subcategory}",data["subcategories"][i]['name'])
+                        }
+                    }else {
+                        for (let i = 0; i < data["brands"].length; i++) {
+                            boxSubcategoryBrands.innerHTML += tmplBrandsSubcategory.replace("${img_brand_subcategory}",data["brands"][i]['image'])
+                                .replace("${name_brand_subcategory}",data["brands"][i]['name'])
+                        }
+                    }
+                });
+            }, 400);
         });
     });
 
@@ -409,6 +453,11 @@ document.addEventListener("DOMContentLoaded", function() {
             // Скрываем .substrate-category и возвращаем стиль z-index для .left-box-1 и .left-box-2
             substrateCategory.style.display = "none";
             leftBox.style.removeProperty("z-index");
+
+            // Скрываем .category-boxBrands и возвращаем на исходное место
+            categoryBoxBrands.style.left = "24px";
+            categoryBoxBrands.style.display = "none";
+
         }
     });
 
@@ -424,7 +473,15 @@ document.addEventListener("DOMContentLoaded", function() {
         // Скрываем .substrate-category и возвращаем стиль z-index для .left-box-1 и .left-box-2
         substrateCategory.style.display = "none";
         leftBox.style.removeProperty("z-index");
+
+        // Скрываем .category-boxBrands и возвращаем на исходное место
+        categoryBoxBrands.style.left = "24px";
+        categoryBoxBrands.style.display = "none";
+
     });
 });
+
+
+
 
 

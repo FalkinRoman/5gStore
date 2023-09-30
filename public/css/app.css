@@ -77,6 +77,23 @@ button {
     background-color:#E0E0E0 ;
 }
 
+.category-boxBrands {
+    width: 236px;
+    border-radius: 32px;
+    margin-bottom: 24px;
+    position: fixed;
+    top: 98px;
+    bottom: 0;
+    transition: all 0.3s ease-out;
+    opacity: 1 !important;
+    z-index: 4;
+    background-color: #FFFFFF;
+}
+
+.category-boxBrands-box-brand {
+    cursor: pointer;
+}
+
 
 /* Левый контейнер */
 

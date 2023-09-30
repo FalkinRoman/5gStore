@@ -2,18 +2,36 @@
 @section('admin.title', $product->name)
 
 @section('admin.content')
-    <main>
-    <div class="container">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2>Продукт <b>{{ $product->name }}</b></h2>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">Главная страница</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.products.index') }}">Продукты</a></li>
+                        <li class="breadcrumb-item active">
+                            <b>{{ $product->name }}</b>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <h1 class="text-center mt-4 mb-4">Товар {{ $product->name }}</h1>
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">Поле</th>
-                <th scope="col">Значение</th>
-            </tr>
-            </thead>
-            <tbody>
+    <div class="card">
+
+        <div class="card-body p-0">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Поле</th>
+                    <th scope="col">Значение</th>
+                </tr>
+                </thead>
+                <tbody>
                 <tr>
                     <td>ID</td>
                     <td>{{ $product->id }}</td>
@@ -33,6 +51,16 @@
                 <tr>
                     <td>Категория</td>
                     <td>{{ $product->category->name }}</td>
+                </tr>
+
+                <tr>
+                    <td>Подкатегория</td>
+                    <td>{{ $product->subcategory->name ?? "не выбрано"}}</td>
+                </tr>
+
+                <tr>
+                    <td>Бренд</td>
+                    <td>{{ $product->brand->name }}</td>
                 </tr>
 
                 <tr>
@@ -79,12 +107,14 @@
                     <td>{{ $cashbackPercentage ?? 'Не указано' }}</td>
                 </tr>
 
-            </tbody>
+                </tbody>
 
-        </table>
+            </table>
+
+        </div>
+
     </div>
+
 @endsection
-
-
 
 

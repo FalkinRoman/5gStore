@@ -9,12 +9,12 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link href="/css/app.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 </head>
 <body>
     <div class="main">
@@ -23,7 +23,32 @@
             <div class="substrate-category-closeIcon flex center center2">
                 <i class="material-icons" style="display: block; color: rgb(64,64,64) ">close</i>
             </div>
+
         </div>
+        <div class="category-boxBrands" style="display: none; left: 24px;">
+            <div class="category-boxBrands-box" style="padding: 24px">
+                <p id="category-name" style="font-size: 17px; color: rgb(64, 64, 64);"></p>
+                <div style="width: 100%; height: 1px; background-color:#E0E0E0; margin-top: 16px;"></div>
+                <div id="box-subcategory-brands">
+
+                </div>
+            </div>
+        </div>
+{{--        <div class="category-boxBrands" style="display: none; left: 24px;">--}}
+{{--            <div class="category-boxBrands-box" style="padding: 24px">--}}
+{{--                <p style="font-size: 17px; color: rgb(64, 64, 64);">Телефоны</p>--}}
+{{--                <div style="width: 100%; height: 1px; background-color:#E0E0E0; margin-top: 16px;"></div>--}}
+{{--                <div id="box-subcategory-brands">--}}
+{{--                    --}}
+{{--                </div>--}}
+{{--                --}}
+{{--                <div style="margin-top: 20px" class="category-boxBrands-box-brand flex center" >--}}
+{{--                    <img style="height: 25px; margin-right: 10px;" src="img/apple-logo-svgrepo-com-2.svg">--}}
+{{--                    <p style="font-weight: 400; ">Apple</p>--}}
+{{--                </div>--}}
+{{--                 --}}
+{{--            </div>--}}
+{{--        </div>--}}
         <!-- Левый контейнер -->
         <div class="left-box">
 
@@ -63,13 +88,15 @@
 
                 <div class="left-box-container">
                     @foreach($categories as $category)
-                    <div class="box-category flex center" style="margin-bottom: 20px;">
-                        <div class="box-category-img flex center center2" style=" margin-right: 10px;">
-                            <img class="" style="height: 30px"
-                                 src="{{ Storage::url($category->image) }} ">
-                            <div class="box-category-img-hover"></div>
+                    <div class="box-category flex center between" style="margin-bottom: 20px;" data-category-id = "{{ $category->id }}">
+                        <div class="flex center">
+                            <div class="box-category-img flex center center2" style=" margin-right: 10px;">
+                                <img class="" style="height: 30px"
+                                     src="{{ Storage::url($category->image) }} ">
+                                <div class="box-category-img-hover"></div>
+                            </div>
+                            <p style="transition: all 0.1s ease-out;" class="textCategoryBar">{{$category->name}}</p>
                         </div>
-                        <p style="transition: all 0.1s ease-out;" class="textCategoryBar">{{$category->name}}</p>
                         <p style="display: none; transition: all 0.1s ease-out; color: #1A74FF; margin-left: 6px;" class="textCategoryBar2">></p>
                     </div>
                     @endforeach
@@ -309,10 +336,19 @@
             </div>
         </div>
     </div>
+{{--    шаблон для подкатегорий или брендов--}}
+    <template id="tmpl-brand-subcategory">
+        <div style="margin-top: 20px" class="category-boxBrands-box-brand flex center" >
+            <img style="height: 25px; margin-right: 10px;" src="{{ Storage::url('${img_brand_subcategory}') }}">
+            <p style="font-weight: 400; ">${name_brand_subcategory}</p>
+        </div>
+    </template>
 
-{{--    <script src="/js/app.js"></script>--}}
-    <script src="/js/script.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>
 

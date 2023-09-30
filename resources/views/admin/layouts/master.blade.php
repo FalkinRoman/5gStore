@@ -241,6 +241,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('admin.subcategories.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-grip-horizontal"></i>
+                            <p>
+                                Подкатегории
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('admin.brands.index') }}" class="nav-link">
                             <i class="nav-icon fab fa-apple"></i>
                             <p>

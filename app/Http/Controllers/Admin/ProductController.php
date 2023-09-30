@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Cryptocurrency;
 use App\Models\Product;
 use App\Models\ProductCashback;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,12 +20,24 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() //страница товаров
+    public function index(Request $request)
     {
-        $products = Product::paginate(10);
+        $keyword = $request->input('keyword');
+
+        // Используйте запрос для поиска товаров по ключевому слову
+        $query = Product::query();
+
+        if (!empty($keyword)) {
+            $query->where('name', 'LIKE', '%' . $keyword . '%');
+        }
+
+        $products = $query->paginate(10);
+
         $categories = Category::get();
-        return view('admin.products.products', compact('products', 'categories'));
+
+        return view('admin.products.products', compact('products', 'categories', 'keyword'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -34,7 +48,9 @@ class ProductController extends Controller
     {
         $categories = Category::get();
         $cryptocurrencies = Cryptocurrency::get();
-        return view('admin.products.form', compact( 'categories', 'cryptocurrencies'));
+        $subcategories = Subcategory::get();
+        $brands = Brand::get();
+        return view('admin.products.form', compact( 'categories', 'cryptocurrencies', 'subcategories', 'brands'));
     }
 
     /**
@@ -98,7 +114,9 @@ class ProductController extends Controller
     {
         $categories = Category::get();
         $cryptocurrencies = Cryptocurrency::get();
-        return view('admin.products.form', compact('product', 'categories', 'cryptocurrencies'));
+        $subcategories = Subcategory::get();
+        $brands = Brand::get();
+        return view('admin.products.form', compact('product', 'categories', 'cryptocurrencies', 'subcategories', 'brands'));
     }
 
 

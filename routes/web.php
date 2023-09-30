@@ -27,12 +27,15 @@ Route::middleware('basket_not_empty')->group(function (){
     Route::post('/basket/place', [\App\Http\Controllers\BasketController::class, 'basketConfirm'])->name('basket-confirm'); //Потвердить заказ
     Route::post('/basket/remove/{product}',[\App\Http\Controllers\BasketController::class, 'basketRemove'])->name('basket-remove'); //Удаление товара с корзины
 });
-
+Route::get('/get-subcategories-and-brands/{categoryId}', [\App\Http\Controllers\SubcategoriesAndBrandsController::class, 'getSubcategoriesAndBrands']);  //получение брендов и субкатегорий для каталога
 Route::get('/', [\App\Http\Controllers\MainConroller::class, 'index'])->name('index');
 Route::get('/categories', [\App\Http\Controllers\MainConroller::class, 'categories'])->name('categories');
 Route::get('/{category}', [\App\Http\Controllers\MainConroller::class, 'category'])->name('category');
 Route::get('/{category}/{product}', [\App\Http\Controllers\MainConroller::class, 'product'])->name('product');
 Route::post('subscription/{product}', [\App\Http\Controllers\MainConroller::class, 'subscribe'])->name('subscription');  //уведомление о пуступлении товара
+
+
+  //получение бренда или субкатегории
 
 
 

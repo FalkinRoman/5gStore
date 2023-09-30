@@ -11,10 +11,16 @@ class Product extends Model
 {
     use SoftDeletes; //траит на удаление товара (оставляет его в базе, но записваерт в поле delete_at время  и дату, позволяет использовать функционал класса)
 
-    protected $fillable = ['code','category_id', 'name', 'description', 'image', 'price', 'hit', 'new', 'recommend', 'count'];
+    protected $fillable = ['code','category_id','subcategory_id','brand_id', 'name', 'description', 'image', 'price', 'hit', 'new', 'recommend', 'count',];
     //функция возвращает категорию продукта
     public function category() {
         return $this->belongsTo(Category::class);
+    }
+
+    //функция возвращает субкатегорию продукта
+    public function subcategory()
+    {
+        return $this->belongsTo(Subcategory::class);
     }
 
     //функция возвращает брэнд продукта
