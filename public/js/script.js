@@ -1,4 +1,4 @@
-
+const categoryBoxBrands2 = document.querySelector(".category-boxBrands2");
 // Сначала устанавливаем кнопку "Криптовалюты" активной и отображаем соответствующий контент.
 showCryptoContent();
 
@@ -374,6 +374,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const boxSubcategoryBrands = document.getElementById("box-subcategory-brands");
     const tmplBrandsSubcategory = document.getElementById("tmpl-brand-subcategory").innerHTML;
 
+
     // Обработчик клика для каждого элемента .box-category
     boxCategories.forEach(function(boxCategory) {
         boxCategory.addEventListener("click", function() {
@@ -385,10 +386,52 @@ document.addEventListener("DOMContentLoaded", function() {
             });
 
             // Скрываем .category-boxBrands
-            categoryBoxBrands.style.left = "24px";
-            setTimeout(() => {
-                categoryBoxBrands.style.display = "none";
-            }, 400);
+
+            if (categoryBoxBrands2.style.display === "block") {
+                    categoryBoxBrands2.style.left = "284px";
+                    setTimeout(() => {
+                        categoryBoxBrands2.style.display = "none";
+                    }, 400);
+                    setTimeout(() => {
+                        categoryBoxBrands.style.left = "24px";
+                    }, 400);
+                    setTimeout(() => {
+                    categoryBoxBrands.style.display = "none";
+                    }, 800);
+            }else {
+                categoryBoxBrands.style.left = "24px";
+                setTimeout(() => {
+                    categoryBoxBrands.style.display = "none";
+                }, 400);
+            }
+
+
+
+            // // Проверяем стиль элемента categoryBoxBrands2
+            // if (categoryBoxBrands2.style.display === "block") {
+            //     // Скрываем .category-boxBrands2
+            //     categoryBoxBrands2.style.left = "284px";
+            //     setTimeout(() => {
+            //         categoryBoxBrands2.style.display = "none";
+            //     }, 400);
+            //     // Скрываем .category-boxBrands
+            //
+            //     setTimeout(() => {
+            //         categoryBoxBrands.style.left = "24px";
+            //     }, 400);
+            //
+            //     setTimeout(() => {
+            //         categoryBoxBrands.style.display = "none";
+            //     }, 800);
+            // }else {
+            //     // Скрываем .category-boxBrands
+            //     categoryBoxBrands.style.left = "24px";
+            //     setTimeout(() => {
+            //         categoryBoxBrands.style.display = "none";
+            //     }, 400);
+            // }
+
+
 
             // Применяем стили к текущему .box-category
             const textCategoryBar = boxCategory.querySelector(".textCategoryBar");
@@ -405,12 +448,22 @@ document.addEventListener("DOMContentLoaded", function() {
             leftBox.style.zIndex = "5";
 
             // Показываем .category-boxBrands и устанавливаем стили
-            setTimeout(() => {
-                categoryBoxBrands.style.display = "block";
+            if (categoryBoxBrands2.style.display === "block") {
                 setTimeout(() => {
-                    categoryBoxBrands.style.left = "284px";
-                },10);
-            }, 400);
+                    categoryBoxBrands.style.display = "block";
+                    setTimeout(() => {
+                        categoryBoxBrands.style.left = "284px";
+                    }, 100);
+                }, 800);
+            }else {
+                setTimeout(() => {
+                    categoryBoxBrands.style.display = "block";
+                    setTimeout(() => {
+                        categoryBoxBrands.style.left = "284px";
+                    },10);
+                }, 400);
+            }
+
 
             // Получите ID выбранной категории из атрибута data-category-id
                 const categoryId = boxCategory.getAttribute("data-category-id");
@@ -425,11 +478,17 @@ document.addEventListener("DOMContentLoaded", function() {
                     // очищаем контейнер
                     boxSubcategoryBrands.innerHTML = '';
                     if (data["subcategories"].length > 0) {
+                        data["subcategories"].sort((a, b) => {
+                            return a['id'] - b['id'];
+                        });
                         for (let i = 0; i < data["subcategories"].length; i++) {
                             boxSubcategoryBrands.innerHTML += tmplBrandsSubcategory.replace("${img_brand_subcategory}",data["subcategories"][i]['image'])
                                 .replace("${name_brand_subcategory}",data["subcategories"][i]['name'])
                         }
                     }else {
+                        data["brands"].sort((a, b) => {
+                            return a['id'] - b['id'];
+                        });
                         for (let i = 0; i < data["brands"].length; i++) {
                             boxSubcategoryBrands.innerHTML += tmplBrandsSubcategory.replace("${img_brand_subcategory}",data["brands"][i]['image'])
                                 .replace("${name_brand_subcategory}",data["brands"][i]['name'])
@@ -449,6 +508,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 category.querySelector(".box-category-img-hover").style.opacity = "";
                 category.querySelector(".textCategoryBar2").style.display = "none";
             });
+
+            // Скрываем .categoryBoxBrands2
+            categoryBoxBrands2.style.display = "none";
+            categoryBoxBrands2.style.left = "284px";
 
             // Скрываем .substrate-category и возвращаем стиль z-index для .left-box-1 и .left-box-2
             substrateCategory.style.display = "none";
@@ -470,6 +533,11 @@ document.addEventListener("DOMContentLoaded", function() {
             category.querySelector(".textCategoryBar2").style.display = "none";
         });
 
+        // Скрываем .categoryBoxBrands2
+        categoryBoxBrands2.style.left = "284px";
+        categoryBoxBrands2.style.display = "none";
+
+
         // Скрываем .substrate-category и возвращаем стиль z-index для .left-box-1 и .left-box-2
         substrateCategory.style.display = "none";
         leftBox.style.removeProperty("z-index");
@@ -480,6 +548,48 @@ document.addEventListener("DOMContentLoaded", function() {
 
     });
 });
+
+
+
+
+
+
+//2 блок каталога
+function createCatalog(event) {
+    // Получаем цель (элемент, на котором произошел клик)
+    const clickedElement = event.currentTarget;
+
+    // Находим все элементы с классом "textCategoryBar2"
+    const textCategoryBar2Elements = document.querySelectorAll(".textCategoryBar22");
+
+    // Скрываем все элементы с классом "textCategoryBar2"
+    textCategoryBar2Elements.forEach(function (element) {
+        element.style.display = "none";
+    });
+
+    // Скрываем .category-boxBrands2
+    categoryBoxBrands2.style.left = "284px";
+    setTimeout(() => {
+        categoryBoxBrands.style.display = "none";
+    }, 400);
+
+    // Отображаем только элемент, на который кликнули
+    const textCategoryBar2 = clickedElement.querySelector(".textCategoryBar22");
+    textCategoryBar2.style.display = "block";
+
+    // показываем .category-boxBrands2
+    setTimeout(() => {
+        categoryBoxBrands2.style.display = "block";
+        setTimeout(() => {
+            categoryBoxBrands2.style.left = "544px";
+        },10);
+    }, 400);
+
+
+
+}
+
+
 
 
 
