@@ -92,7 +92,7 @@ button {
 }
 
 .category-boxBrands2 {
-    width: 236px;
+    min-width: 236px;
     border-radius: 32px;
     margin-bottom: 24px;
     background-color: #FFFFFF;

@@ -37,7 +37,7 @@
 
         <div style="display: none; left: 284px;" class="category-boxBrands2">
             <div class="category-boxBrands-box2" style="padding: 24px">
-                <p id="category-name2" style="font-size: 17px; color: rgb(64, 64, 64);">Samsung</p>
+                <p id="category-name2" style="font-size: 17px; color: rgb(64, 64, 64);"></p>
                 <div style="width: 100%; height: 1px; background-color:#E0E0E0; margin-top: 16px;"></div>
                 <div id="box-subcategory-brands2">
                 </div>
@@ -333,12 +333,21 @@
     </div>
 {{--    шаблон для подкатегорий или брендов--}}
     <template id="tmpl-brand-subcategory">
-        <div onclick="createCatalog(event)" style="margin-top: 20px" class="category-boxBrands-box-brand flex center between" >
+        <div onclick="createCatalog(event)" style="margin-top: 20px" class="category-boxBrands-box-brand flex center between" data-brand-or-subcategory = "${data-brand-or-subcategory}" id-brand-or-subcategory = "${id-brand-or-subcategory}" data-category-id2 = "${data-category-id2}">
             <div class="flex center">
                 <img style="height: 25px; margin-right: 10px;" src="{{ Storage::url('${img_brand_subcategory}') }}">
                 <p class="category-boxBrands-text" style="font-weight: 400; ">${name_brand_subcategory}</p>
             </div>
             <p style="display: none; transition: all 0.1s ease-out; color: #1A74FF; margin-left: 6px;" class="textCategoryBar22">></p>
+        </div>
+    </template>
+
+    <template id="tmpl-brand-subcategory2">
+        <div  style="margin-top: 20px" class="category-boxBrands-box-brand flex center between">
+            <div class="flex center">
+                <img style="height: 25px; margin-right: 10px;" src="{{ Storage::url('${img_brand_subcategory2}') }}">
+                <p class="category-boxBrands-text" style="font-weight: 400; ">${name_brand_subcategory2}</p>
+            </div>
         </div>
     </template>
 

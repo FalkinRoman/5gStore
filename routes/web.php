@@ -28,6 +28,8 @@ Route::middleware('basket_not_empty')->group(function (){
     Route::post('/basket/remove/{product}',[\App\Http\Controllers\BasketController::class, 'basketRemove'])->name('basket-remove'); //Удаление товара с корзины
 });
 Route::get('/get-subcategories-and-brands/{categoryId}', [\App\Http\Controllers\SubcategoriesAndBrandsController::class, 'getSubcategoriesAndBrands']);  //получение брендов и субкатегорий для каталога
+Route::get('/get-brands-and-products/{categoryId}/{subcategoryId}', [\App\Http\Controllers\BrandsAndProductsController::class, 'getBrands']);  //получение брендов
+Route::get('/get-brands-and-products2/{categoryId}/{brandId}', [\App\Http\Controllers\BrandsAndProductsController::class, 'getProducts']);  //получение продуктов для каталога
 Route::get('/', [\App\Http\Controllers\MainConroller::class, 'index'])->name('index');
 Route::get('/categories', [\App\Http\Controllers\MainConroller::class, 'categories'])->name('categories');
 Route::get('/{category}', [\App\Http\Controllers\MainConroller::class, 'category'])->name('category');

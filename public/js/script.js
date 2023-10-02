@@ -406,33 +406,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
 
-
-            // // Проверяем стиль элемента categoryBoxBrands2
-            // if (categoryBoxBrands2.style.display === "block") {
-            //     // Скрываем .category-boxBrands2
-            //     categoryBoxBrands2.style.left = "284px";
-            //     setTimeout(() => {
-            //         categoryBoxBrands2.style.display = "none";
-            //     }, 400);
-            //     // Скрываем .category-boxBrands
-            //
-            //     setTimeout(() => {
-            //         categoryBoxBrands.style.left = "24px";
-            //     }, 400);
-            //
-            //     setTimeout(() => {
-            //         categoryBoxBrands.style.display = "none";
-            //     }, 800);
-            // }else {
-            //     // Скрываем .category-boxBrands
-            //     categoryBoxBrands.style.left = "24px";
-            //     setTimeout(() => {
-            //         categoryBoxBrands.style.display = "none";
-            //     }, 400);
-            // }
-
-
-
             // Применяем стили к текущему .box-category
             const textCategoryBar = boxCategory.querySelector(".textCategoryBar");
             const boxCategoryImgHover = boxCategory.querySelector(".box-category-img-hover");
@@ -474,7 +447,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 axios.get(`/get-subcategories-and-brands/${categoryId}`)
                 .then(function (response) {
                     const data = response.data;
-                    console.log(data)
                     // очищаем контейнер
                     boxSubcategoryBrands.innerHTML = '';
                     if (data["subcategories"].length > 0) {
@@ -484,6 +456,10 @@ document.addEventListener("DOMContentLoaded", function() {
                         for (let i = 0; i < data["subcategories"].length; i++) {
                             boxSubcategoryBrands.innerHTML += tmplBrandsSubcategory.replace("${img_brand_subcategory}",data["subcategories"][i]['image'])
                                 .replace("${name_brand_subcategory}",data["subcategories"][i]['name'])
+                                .replace("${data-brand-or-subcategory}","subcategories")
+                                .replace("${data-category-id2}",`${categoryId}`)
+                                .replace("${id-brand-or-subcategory}",data["subcategories"][i]['id'])
+
                         }
                     }else {
                         data["brands"].sort((a, b) => {
@@ -492,6 +468,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         for (let i = 0; i < data["brands"].length; i++) {
                             boxSubcategoryBrands.innerHTML += tmplBrandsSubcategory.replace("${img_brand_subcategory}",data["brands"][i]['image'])
                                 .replace("${name_brand_subcategory}",data["brands"][i]['name'])
+                                .replace("${data-brand-or-subcategory}","brands")
+                                .replace("${data-category-id2}",`${categoryId}`)
+                                .replace("${id-brand-or-subcategory}",data["brands"][i]['id'])
                         }
                     }
                 });
@@ -556,6 +535,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //2 блок каталога
 function createCatalog(event) {
+    const categoryNameElement = document.getElementById("category-name2");
+    const boxSubcategoryBrands2 = document.getElementById("box-subcategory-brands2");
+    const tmplBrandsSubcategory2 = document.getElementById("tmpl-brand-subcategory2").innerHTML;
+
     // Получаем цель (элемент, на котором произошел клик)
     const clickedElement = event.currentTarget;
 
@@ -570,7 +553,7 @@ function createCatalog(event) {
     // Скрываем .category-boxBrands2
     categoryBoxBrands2.style.left = "284px";
     setTimeout(() => {
-        categoryBoxBrands.style.display = "none";
+        categoryBoxBrands2.style.display = "none";
     }, 400);
 
     // Отображаем только элемент, на который кликнули
@@ -585,8 +568,65 @@ function createCatalog(event) {
         },10);
     }, 400);
 
+    // Получите name элемента из атрибута data-brand-or-subcategory
+    const nameBrandOrSubcategory = clickedElement.getAttribute("data-brand-or-subcategory");
+    // Получите ID выбранной категории
+    const categoryId = clickedElement.getAttribute("data-category-id2");
+    // Получите ID выбранной субкатегории или бренда
+    const subcategoryOrBrandId = clickedElement.getAttribute("id-brand-or-subcategory");
 
+    setTimeout(function() {
 
+     // Название бокса
+    categoryNameElement.textContent = clickedElement.textContent.replace('>', '');
+
+    if (nameBrandOrSubcategory =="subcategories") {
+        axios.get(`/get-brands-and-products/${categoryId}/${subcategoryOrBrandId}`)
+            .then(function (response) {
+                const data = response.data;
+                console.log(data)
+                // очищаем контейнер
+                boxSubcategoryBrands2.innerHTML = '';
+                data["brands"].sort((a, b) => {
+                    return a['id'] - b['id'];
+                });
+                for (let i = 0; i < data["brands"].length; i++) {
+                    // Получите полный текст
+                    let fullName = data["brands"][i]['name'];
+
+                    // Обрежьте текст до 21 символа
+                    let truncatedName = fullName.slice(0, 23);
+
+                    // Добавьте обрезанный текст в элемент
+                    boxSubcategoryBrands2.innerHTML += tmplBrandsSubcategory2.replace("${name_brand_subcategory2}", truncatedName)
+                     .replace("${img_brand_subcategory2}",data["brands"][i]['image'])
+                }
+
+    });
+    }else if (nameBrandOrSubcategory =="brands"){
+        axios.get(`/get-brands-and-products2/${categoryId}/${subcategoryOrBrandId}`)
+            .then(function (response) {
+                const data = response.data;
+                // очищаем контейнер
+                boxSubcategoryBrands2.innerHTML = '';
+                data["products"].sort((a, b) => {
+                    return a['id'] - b['id'];
+                });
+                for (let i = 0; i < data["products"].length; i++) {
+                    // Получите полный текст
+                    let fullName = data["products"][i]['name'];
+
+                    // Обрежьте текст до 21 символа
+                    let truncatedName = fullName.slice(0, 23);
+
+                    // Добавьте обрезанный текст в элемент
+                    boxSubcategoryBrands2.innerHTML += tmplBrandsSubcategory2.replace("${name_brand_subcategory2}", truncatedName)
+                     .replace("${img_brand_subcategory2}",data["products"][i]['image'])
+                }
+            });
+
+    }
+    }, 400);
 }
 
 
