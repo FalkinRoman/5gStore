@@ -18,6 +18,16 @@
 </head>
 <body>
     <div class="main">
+        <div class="preloader">
+            <div class="sk-chase">
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+            </div>
+        </div>
         {{-- подложка--}}
         <div class="substrate-category" style="display: none">
             <div class="substrate-category-closeIcon flex center center2">
@@ -74,7 +84,7 @@
             </div>
 
             <a href="{{ route('index') }}">
-                <div class="left-box-1" style="height: 82px;">
+                <div class="left-box-1 transition" style="height: 82px;">
                         <img id="left-box-1-img" style="margin: 38px 0 0 30px;" src="img/5glogotop.svg" alt="">
                 </div>
             </a>

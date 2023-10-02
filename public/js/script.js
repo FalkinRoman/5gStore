@@ -263,9 +263,7 @@ nextBtn2.addEventListener('click', () => {
 
 
 
-
-//Увеличение или уменьшение рабочей области
-
+// Увеличение или уменьшение рабочей области
 const maxWindowButton = document.getElementById("maxWindow");
 const imgLogo1 = document.getElementById("left-box-1-img");
 const textBars = document.querySelectorAll(".textCategoryBar");
@@ -287,46 +285,88 @@ const imgPhoneBox = document.getElementById("imgPhoneBox");
 const textPhoneBox = document.getElementById("textPhoneBox");
 const chatBox = document.querySelector(".chatBox");
 const phoneChatLine = document.querySelector(".phoneChatLine");
+const preloader = document.querySelector(".preloader");
 
-let isOpen = false;
+let isOpen = true;
 
-maxWindowButton.addEventListener("click", () => {
+// Функция для временного отключения анимации
+function disableTransition() {
+    // Добавляем класс no-transition к элементам, которые не должны анимироваться
+    leftBox.style.transition = "none";
+    logoMin2.style.transition = "none";
+    leftBox3.style.transition = "none";
+    imgLogo1.style.transition = "none";
+    containerCenterTop.style.transition = "none";
+    footer.style.transition = "none";
+    phoneChatBox.style.transition = "none";
+    phoneChatBox2.style.transition = "none";
+    phoneBox.style.transition = "none";
+    textPhoneBox.style.transition = "none";
+    chatBox.style.transition = "none";
+    imgPhoneBox.style.transition = "none";
+    containerContent.style.transition = "none";
+    logoMin.style.transition = "none";
+}
+
+
+// Функция для включения анимации после изменения значения isOpen
+function enableTransition() {
+    // Убираем класс no-transition, чтобы включить анимацию
+    leftBox.style.transition = "";
+    logoMin2.style.transition = "";
+    leftBox3.style.transition = "";
+    imgLogo1.style.transition = "";
+    containerCenterTop.style.transition = "";
+    footer.style.transition = "";
+    phoneChatBox.style.transition = "";
+    phoneChatBox2.style.transition = "";
+    phoneBox.style.transition = "";
+    textPhoneBox.style.transition = "";
+    chatBox.style.transition = "";
+    imgPhoneBox.style.transition = "";
+    containerContent.style.transition = "";
+    logoMin.style.transition = "";
+
+}
+
+
+// Функция для применения стилей в зависимости от значения isOpen
+function applyStyles() {
     if (isOpen) {
+        // Ваши стили для открытой рабочей области
         logoMin.style.display = "none";
         logoMin2.style.opacity = 0;
         leftBox3.style.width = "236px";
         leftBoxContainer.style.padding = "24px";
         imgLogo1.style.margin = "38px 0px 0px 30px";
         textBars.forEach(element => element.style.opacity = 1);
-        containerContent.style.margin="0px 384px 0px 284px"
-        containerCenterTop.style.left="284px"
+        containerContent.style.margin = "0px 384px 0px 284px";
+        containerCenterTop.style.left = "284px";
         isOpenIcon.style.display = "block";
         noIsOpenIcon.style.display = "none";
-        footer.style.left="284px";
-        phoneChatBox.style.width="236px";
-        phoneChatBox.style.marginBottom="0px";
-        phoneChatBox2.style.width="188px";
-        phoneChatBox2.style.height="40px";
-        phoneChatBox2.style.margin="24px 0 0 24px";
+        footer.style.left = "284px";
+        phoneChatBox.style.width = "236px";
+        phoneChatBox.style.marginBottom = "0px";
+        phoneChatBox2.style.width = "188px";
+        phoneChatBox2.style.height = "40px";
+        phoneChatBox2.style.margin = "24px 0 0 24px";
         phoneChatBox2.style.flexDirection = "";
-        phoneBox.style.marginLeft="22px";
-        textPhoneBox.style.display="block";
-        chatBox.style.margin="0px 22px 0px 0px";
-        imgPhoneBox.style.margin="0px 10px 0px 0px";
-        phoneChatLine.style.height="24px";
-        phoneChatLine.style.width="1px";
-
+        phoneBox.style.marginLeft = "22px";
+        textPhoneBox.style.display = "block";
+        chatBox.style.margin = "0px 22px 0px 0px";
+        imgPhoneBox.style.margin = "0px 10px 0px 0px";
+        phoneChatLine.style.height = "24px";
+        phoneChatLine.style.width = "1px";
 
         // Поставим команду с задержкой, чтобы она выполнилась после остальных
         setTimeout(() => {
-            leftBox2.classList.remove("hidden2")
+            leftBox2.classList.remove("hidden2");
             leftBox.style.height = '82px';
             imgLogo1.style.opacity = 1;
-            ;
-
         }, 500);
     } else {
-        containerContent.style.margin="0px 384px 0px 112px"
+        // Ваши стили для закрытой рабочей области
+        containerContent.style.margin = "0px 384px 0px 112px";
         leftBox.style.height = '0px';
         leftBox2.classList.add("hidden2");
         leftBox3.style.width = "64px";
@@ -334,32 +374,64 @@ maxWindowButton.addEventListener("click", () => {
         imgLogo1.style.opacity = 0;
         imgLogo1.style.margin = "0px";
         textBars.forEach(element => element.style.opacity = 0);
-        containerCenterTop.style.left="112px"
+        containerCenterTop.style.left = "112px";
         isOpenIcon.style.display = "none";
         noIsOpenIcon.style.display = "block";
-        footer.style.left="112px";
-        phoneChatBox.style.width="64px";
-        phoneChatBox.style.marginBottom="16px";
-        phoneChatBox2.style.width="40px";
-        phoneChatBox2.style.height="auto";
-        phoneChatBox2.style.margin="12px";
-        phoneChatBox2.style.flexDirection="column";
-        phoneBox.style.marginLeft="0px";
-        textPhoneBox.style.display="none";
-        chatBox.style.margin="12px 0px";
-        imgPhoneBox.style.margin="12px 0px";
-        phoneChatLine.style.height="1px";
-        phoneChatLine.style.width="24px";
+        footer.style.left = "112px";
+        phoneChatBox.style.width = "64px";
+        phoneChatBox.style.marginBottom = "16px";
+        phoneChatBox2.style.width = "40px";
+        phoneChatBox2.style.height = "auto";
+        phoneChatBox2.style.margin = "12px";
+        phoneChatBox2.style.flexDirection = "column";
+        phoneBox.style.marginLeft = "0px";
+        textPhoneBox.style.display = "none";
+        chatBox.style.margin = "12px 0px";
+        imgPhoneBox.style.margin = "12px 0px";
+        phoneChatLine.style.height = "1px";
+        phoneChatLine.style.width = "24px";
         setTimeout(() => {
-        logoMin.style.display = "flex";
+            logoMin.style.display = "flex";
         }, 400);
-             setTimeout(() => {
-                logoMin2.style.opacity = 1;
-                 }, 500);
+        setTimeout(() => {
+            logoMin2.style.opacity = 1;
+        }, 500);
     }
+}
 
-    isOpen = !isOpen;
+// Проверка и запись значения isOpen в localStorage, если оно равно null
+if (localStorage.getItem('isOpen') === null) {
+    localStorage.setItem('isOpen', JSON.stringify(isOpen));
+}
+
+// Загрузка значения isOpen из localStorage при загрузке страницы
+window.addEventListener('load', () => {
+    const storedIsOpen = localStorage.getItem('isOpen');
+    isOpen = JSON.parse(storedIsOpen);
+    console.log(isOpen);
+
+    // Примените стили при загрузке страницы
+    disableTransition(); // Отключаем анимацию при загрузке
+    applyStyles();
+    setTimeout(() => {
+        enableTransition(); // Включаем анимацию после применения стилей
+        preloader.classList.add('preloader_hidden') // Включаем прилодер
+    }, 700);
 });
+
+// Обработчик события для кнопки "Увеличение/уменьшение рабочей области"
+maxWindowButton.addEventListener("click", () => {
+    isOpen = !isOpen;
+
+    // Сохранение значения isOpen в localStorage
+    localStorage.setItem('isOpen', JSON.stringify(isOpen));
+
+    // Примените стили после изменения значения isOpen
+    applyStyles();
+
+});
+
+
 
 
 
