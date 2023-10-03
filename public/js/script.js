@@ -1,4 +1,32 @@
 const categoryBoxBrands2 = document.querySelector(".category-boxBrands2");
+const categoryBoxBrands = document.querySelector(".category-boxBrands");
+const maxWindowButton = document.getElementById("maxWindow");
+const imgLogo1 = document.getElementById("left-box-1-img");
+const textBars = document.querySelectorAll(".textCategoryBar");
+const leftBox = document.querySelector(".left-box-1");
+const leftBox2 = document.querySelector(".left-box-2");
+const leftBox3 = document.querySelector(".left-box");
+const leftBoxContainer = document.querySelector(".left-box-container");
+const containerContent = document.querySelector(".container");
+const containerCenterTop = document.querySelector(".center-top");
+const noIsOpenIcon = document.getElementById("noIsOpenIcon");
+const isOpenIcon = document.getElementById("isOpenIcon");
+const footer = document.querySelector(".footer");
+const logoMin = document.querySelector(".logomin");
+const logoMin2 = document.querySelector(".logomin2");
+const logoMin3 = document.querySelector(".logomin3");
+const phoneChatBox = document.querySelector(".phoneChatBox");
+const phoneChatBox2 = document.querySelector(".phoneChatBox2");
+const phoneBox = document.querySelector(".phoneBox");
+const imgPhoneBox = document.getElementById("imgPhoneBox");
+const textPhoneBox = document.getElementById("textPhoneBox");
+const chatBox = document.querySelector(".chatBox");
+const phoneChatLine = document.querySelector(".phoneChatLine");
+const preloader = document.querySelector(".preloader");
+const boxCategories = document.querySelectorAll(".box-category");
+const substrateCategory = document.querySelector(".substrate-category");
+
+
 // Сначала устанавливаем кнопку "Криптовалюты" активной и отображаем соответствующий контент.
 showCryptoContent();
 
@@ -31,11 +59,6 @@ function showWalletContent() {
 
 
 }
-
-
-
-
-
 
 // Установить значение по умолчанию на "USDT"
 document.getElementById("currency").value = "USDT";
@@ -264,28 +287,6 @@ nextBtn2.addEventListener('click', () => {
 
 
 // Увеличение или уменьшение рабочей области
-const maxWindowButton = document.getElementById("maxWindow");
-const imgLogo1 = document.getElementById("left-box-1-img");
-const textBars = document.querySelectorAll(".textCategoryBar");
-const leftBox = document.querySelector(".left-box-1");
-const leftBox2 = document.querySelector(".left-box-2");
-const leftBox3 = document.querySelector(".left-box");
-const leftBoxContainer = document.querySelector(".left-box-container");
-const containerContent = document.querySelector(".container");
-const containerCenterTop = document.querySelector(".center-top");
-const noIsOpenIcon = document.getElementById("noIsOpenIcon");
-const isOpenIcon = document.getElementById("isOpenIcon");
-const footer = document.querySelector(".footer");
-const logoMin = document.querySelector(".logomin");
-const logoMin2 = document.querySelector(".logomin2");
-const phoneChatBox = document.querySelector(".phoneChatBox");
-const phoneChatBox2 = document.querySelector(".phoneChatBox2");
-const phoneBox = document.querySelector(".phoneBox");
-const imgPhoneBox = document.getElementById("imgPhoneBox");
-const textPhoneBox = document.getElementById("textPhoneBox");
-const chatBox = document.querySelector(".chatBox");
-const phoneChatLine = document.querySelector(".phoneChatLine");
-const preloader = document.querySelector(".preloader");
 
 let isOpen = true;
 
@@ -331,13 +332,14 @@ function enableTransition() {
 
 
 // Функция для применения стилей в зависимости от значения isOpen
+
 function applyStyles() {
     if (isOpen) {
         // Ваши стили для открытой рабочей области
         logoMin.style.display = "none";
         logoMin2.style.opacity = 0;
         leftBox3.style.width = "236px";
-        leftBoxContainer.style.padding = "24px";
+        leftBoxContainer.style.padding = "24px 24px 68px 24px";
         imgLogo1.style.margin = "38px 0px 0px 30px";
         textBars.forEach(element => element.style.opacity = 1);
         containerContent.style.margin = "0px 384px 0px 284px";
@@ -370,7 +372,7 @@ function applyStyles() {
         leftBox.style.height = '0px';
         leftBox2.classList.add("hidden2");
         leftBox3.style.width = "64px";
-        leftBoxContainer.style.padding = "74px 12px 0px 12px";
+        leftBoxContainer.style.padding = "74px 12px 78px";
         imgLogo1.style.opacity = 0;
         imgLogo1.style.margin = "0px";
         textBars.forEach(element => element.style.opacity = 0);
@@ -404,15 +406,17 @@ if (localStorage.getItem('isOpen') === null) {
     localStorage.setItem('isOpen', JSON.stringify(isOpen));
 }
 
+
+
 // Загрузка значения isOpen из localStorage при загрузке страницы
 window.addEventListener('load', () => {
     const storedIsOpen = localStorage.getItem('isOpen');
     isOpen = JSON.parse(storedIsOpen);
-    console.log(isOpen);
 
     // Примените стили при загрузке страницы
     disableTransition(); // Отключаем анимацию при загрузке
     applyStyles();
+    helperBigWindow();
     setTimeout(() => {
         enableTransition(); // Включаем анимацию после применения стилей
         preloader.classList.add('preloader_hidden') // Включаем прилодер
@@ -428,6 +432,7 @@ maxWindowButton.addEventListener("click", () => {
 
     // Примените стили после изменения значения isOpen
     applyStyles();
+    helperBigWindow();
 
 });
 
@@ -437,11 +442,9 @@ maxWindowButton.addEventListener("click", () => {
 
 //подложка под категории и меню
 document.addEventListener("DOMContentLoaded", function() {
-    const boxCategories = document.querySelectorAll(".box-category");
-    const substrateCategory = document.querySelector(".substrate-category");
+
     const closeIcon = document.querySelector(".substrate-category-closeIcon");
     const leftBox = document.querySelector(".left-box");
-    const categoryBoxBrands = document.querySelector(".category-boxBrands");
     const categoryNameElement = document.getElementById("category-name");
     const boxSubcategoryBrands = document.getElementById("box-subcategory-brands");
     const tmplBrandsSubcategory = document.getElementById("tmpl-brand-subcategory").innerHTML;
@@ -456,6 +459,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 category.querySelector(".box-category-img-hover").style.opacity = "";
                 category.querySelector(".textCategoryBar2").style.display = "none";
             });
+
+            if (getIsOpen() === false) {
+                styleBigWindowCatalogActive()
+            }
 
             // Скрываем .category-boxBrands
 
@@ -553,50 +560,13 @@ document.addEventListener("DOMContentLoaded", function() {
     // Обработчик клика на .substrate-category
     substrateCategory.addEventListener("click", function(event) {
         if (event.target === substrateCategory) {
-            // Возвращаем стили всех .box-category к исходным значениям
-            boxCategories.forEach(function(category) {
-                category.querySelector(".textCategoryBar").style.color = "";
-                category.querySelector(".box-category-img-hover").style.opacity = "";
-                category.querySelector(".textCategoryBar2").style.display = "none";
-            });
-
-            // Скрываем .categoryBoxBrands2
-            categoryBoxBrands2.style.display = "none";
-            categoryBoxBrands2.style.left = "284px";
-
-            // Скрываем .substrate-category и возвращаем стиль z-index для .left-box-1 и .left-box-2
-            substrateCategory.style.display = "none";
-            leftBox.style.removeProperty("z-index");
-
-            // Скрываем .category-boxBrands и возвращаем на исходное место
-            categoryBoxBrands.style.left = "24px";
-            categoryBoxBrands.style.display = "none";
-
+            defaultStyleWindow();
         }
     });
 
     // Обработчик клика на .substrate-category-closeIcon
     closeIcon.addEventListener("click", function() {
-        // Возвращаем стили всех .box-category к исходным значениям
-        boxCategories.forEach(function(category) {
-            category.querySelector(".textCategoryBar").style.color = "";
-            category.querySelector(".box-category-img-hover").style.opacity = "";
-            category.querySelector(".textCategoryBar2").style.display = "none";
-        });
-
-        // Скрываем .categoryBoxBrands2
-        categoryBoxBrands2.style.left = "284px";
-        categoryBoxBrands2.style.display = "none";
-
-
-        // Скрываем .substrate-category и возвращаем стиль z-index для .left-box-1 и .left-box-2
-        substrateCategory.style.display = "none";
-        leftBox.style.removeProperty("z-index");
-
-        // Скрываем .category-boxBrands и возвращаем на исходное место
-        categoryBoxBrands.style.left = "24px";
-        categoryBoxBrands.style.display = "none";
-
+        defaultStyleWindow();
     });
 });
 
@@ -701,9 +671,120 @@ function createCatalog(event) {
     }, 400);
 }
 
+// Подсказкак при большом экране для категорий
+function helperBigWindow() {
+    // Получаем все элементы с классом .box-category-img-hover
+    const boxCategoryImgHovers = document.querySelectorAll('.box-category-img-hover');
+    const textCategoryBarElements = document.querySelectorAll('.textCategoryBar');
+
+    if (isOpen === false) {
+        // Перебираем все элементы и устанавливаем атрибут title для каждого
+        boxCategoryImgHovers.forEach((boxCategoryImgHover, index) => {
+            const categoryName = textCategoryBarElements[index].textContent;
+            boxCategoryImgHover.title = categoryName;
+        });
+    } else {
+        // Если isOpen === true, то удаляем атрибут title для всех элементов
+        boxCategoryImgHovers.forEach(boxCategoryImgHover => {
+            boxCategoryImgHover.removeAttribute('title');
+        });
+    }
+}
 
 
+//Получение isOpen
+function getIsOpen() {
+    const local = localStorage.getItem('isOpen');
+    let result = JSON.parse(local);
+    return result;
+}
+
+//Большой экран стили нажатие на каталог
+function styleBigWindowCatalogActive() {
+    leftBox3.style.width = "236px";
+    leftBox3.style.zIndex = 10;
+    textBars.forEach(element => element.style.opacity = 1);
+    leftBoxContainer.style.padding = "76px 24px 68px 24px";
+    phoneChatBox.style.width = "236px";
+    phoneChatBox.style.marginBottom = "0px";
+    phoneChatBox2.style.width = "188px";
+    phoneChatBox2.style.height = "40px";
+    phoneChatBox2.style.margin = "24px 0 0 24px";
+    phoneChatBox2.style.flexDirection = "";
+    phoneBox.style.marginLeft = "22px";
+    textPhoneBox.style.display = "block";
+    chatBox.style.margin = "0px 22px 0px 0px";
+    imgPhoneBox.style.margin = "0px 10px 0px 0px";
+    phoneChatLine.style.height = "24px";
+    phoneChatLine.style.width = "1px";
+    logoMin.style.width = "236px";
+    logoMin2.style.display = "none";
+    logoMin3.style.display = "block";
+    setTimeout(() => {
+        logoMin3.style.opacity = 1;
+    }, 200);
+    categoryBoxBrands.style.top = "24px"
+    categoryBoxBrands2.style.top = "24px"
+}
 
 
+//Стили для большого экрана неактивный каталог
+function styleBigWindowCatalogNoActive() {
+    leftBox3.style.width = "64px";
+    leftBox3.style.zIndex = 0;
+    textBars.forEach(element => element.style.opacity = 0);
+    leftBoxContainer.style.padding = "74px 12px 78px";
+    phoneChatBox.style.width = "64px";
+    phoneChatBox.style.marginBottom = "16px";
+    phoneChatBox2.style.width = "40px";
+    phoneChatBox2.style.height = "auto";
+    phoneChatBox2.style.margin = "12px";
+    phoneChatBox2.style.flexDirection = "column";
+    phoneBox.style.marginLeft = "0px";
+    textPhoneBox.style.display = "none";
+    chatBox.style.margin = "12px 0px";
+    imgPhoneBox.style.margin = "12px 0px";
+    phoneChatLine.style.height = "1px";
+    phoneChatLine.style.width = "24px";
+    logoMin.style.width = "64px";
+    logoMin2.style.display = "block";
+    logoMin3.style.display = "none";
+    setTimeout(() => {
+        logoMin3.style.opacity = 1;
+    }, 200);
+    categoryBoxBrands.style.top = "98px"
+    categoryBoxBrands2.style.top = "98px"
+}
 
+
+//Дефолтные значения при закрытии каталога и кнопки close
+function defaultStyleWindow() {
+    // Возвращаем стили всех .box-category к исходным значениям
+    boxCategories.forEach(function(category) {
+        category.querySelector(".textCategoryBar").style.color = "";
+        category.querySelector(".box-category-img-hover").style.opacity = "";
+        category.querySelector(".textCategoryBar2").style.display = "none";
+    });
+
+    // Скрываем .categoryBoxBrands2
+    categoryBoxBrands2.style.left = "284px";
+    categoryBoxBrands2.style.display = "none";
+
+    if (getIsOpen() === false) {
+        disableTransition()
+        styleBigWindowCatalogNoActive()
+        setTimeout(() => {
+            enableTransition(); // Включаем анимацию после применения стилей
+        }, 700);
+    }
+
+
+    // Скрываем .substrate-category и возвращаем стиль z-index для .left-box-1 и .left-box-2
+    substrateCategory.style.display = "none";
+    leftBox.style.removeProperty("z-index");
+
+    // Скрываем .category-boxBrands и возвращаем на исходное место
+    categoryBoxBrands.style.left = "24px";
+    categoryBoxBrands.style.display = "none";
+}
 

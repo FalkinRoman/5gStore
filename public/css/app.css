@@ -44,6 +44,7 @@ button {
 }
 
 
+
 .main {
     height: 100vh;
     display: flex;
@@ -304,6 +305,7 @@ button {
     opacity: 1 !important;
     z-index: 4;
     background-color: #FFFFFF;
+    overflow-y: auto;
 
 }
 
@@ -317,7 +319,27 @@ button {
     bottom: 0;
     transition: all 0.3s ease-out;
     z-index: 3;
+    overflow-y: auto;
+}
 
+
+/* Удалить стандартный стиль скроллбара */
+::-webkit-scrollbar {
+    width: 6px; /* Ширина скроллбара */
+
+}
+
+/* Стилизация полосы скроллинга */
+::-webkit-scrollbar-thumb {
+    background-color: #888; /* Цвет полосы скроллинга */
+    border-radius: 4px; /* Скругление углов полосы скроллинга */
+}
+
+/* Удалить подложку (track) скроллбара */
+::-webkit-scrollbar-track {
+    background: transparent; /* Прозрачный фон подложки */
+    margin-top: 24px; /* Отступ сверху на 24px */
+    margin-bottom: 24px; /* Отступ снизу на 24px */
 
 }
 
@@ -397,6 +419,9 @@ button {
 }
 
 
+
+
+
 /*второй блок каталога*/
  .category-boxBrands-box-brand:hover .category-boxBrands-text{
     color: rgb(64,64,64);
@@ -413,6 +438,7 @@ button {
     width: 64px;
     border-radius: 32px 32px 0 0;
     display: none;
+    transition: all 0.5s ease-out;
 
 
 }
@@ -422,6 +448,9 @@ button {
     transition: all 0.5s ease-out;
 }
 
+.logomin3 {
+    transition: all 0.5s ease-out;
+}
 
 /* телефон и чат  */
 .phoneChatBox {
@@ -485,7 +514,7 @@ button {
 .left-box-container {
     display: flex;
     flex-direction: column;
-    padding: 24px;
+    padding: 24px 24px 68px 24px;
 }
 
 * Скрываем полосу прокрутки при наведении *

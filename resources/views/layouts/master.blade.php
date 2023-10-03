@@ -60,8 +60,9 @@
 
 
             <a href="{{ route('index') }}">
-                <div class="logomin  center center2">
+                <div class="logomin flex  center center2">
                     <img class="logomin2" src="img/logomin.svg" alt="">
+                    <img style="display: none;  opacity: 0 " class="logomin3" src="img/5glogotop.svg" alt="">
                 </div>
             </a>
 
@@ -91,11 +92,11 @@
             {{-- Категории--}}
             <div class="left-box-2">
 
-                <div class="left-box-container">
+                <div class="left-box-container" >
                     @foreach($categories as $category)
                     <div class="box-category flex center between" style="margin-bottom: 20px;" data-category-id = "{{ $category->id }}">
                         <div class="flex center">
-                            <div class="box-category-img flex center center2" style=" margin-right: 10px;">
+                            <div class="box-category-img flex center center2" style=" margin-right: 10px; ">
                                 <img class="" style="height: 30px"
                                      src="{{ Storage::url($category->image) }} ">
                                 <div class="box-category-img-hover"></div>
