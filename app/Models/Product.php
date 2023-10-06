@@ -40,6 +40,12 @@ class Product extends Model
     }
 
 
+    public function reviews() //получение всех отзывов и рейтинга продукта
+    {
+        return $this->hasMany(Review::class);
+    }
+
+
 
 
     public function getPriceForCount() {    //общая стоимость для колличества товаров

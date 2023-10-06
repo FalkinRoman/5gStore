@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -7,7 +6,6 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-
     public function index()
     {
         return view('admin.auth.login');
@@ -15,23 +13,26 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $data =  $request->validate([
+        $data = $request->validate([
             'email' => 'required|string|email',
             'password' => 'required',
         ]);
 
-        if (auth('admin')->attempt($data)){
+        // Проверяем, включена ли опция "Запомнить меня"
+        $remember = $request->has('remember');
+
+        if (auth('admin')->attempt($data, $remember)) {
             return redirect()->route('admin.main');
         }
 
-        return redirect()->route('admin.login')->withErrors(["email" => " Пользователь не найден, либо данные введены не правильно"]);
+        // Если вход не удался, добавляем уведомление об ошибке
+        return redirect()->route('admin.login')->withErrors(["warning" => "Пользователь не найден, либо данные введены неверно"]);
     }
 
     public function logout()
     {
         auth('admin')->logout();
-        return redirect('/');
+        return redirect()->route('admin.login');
     }
-
-
 }
+

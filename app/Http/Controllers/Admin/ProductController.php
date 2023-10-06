@@ -59,14 +59,22 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request) //создание нового товара
+    public function store(ProductRequest $request) //создание нового продукта
     {
         $params = $request->all();
-        unset($params['image']);
-        if ($request->has('image')) {
-            $path = $request->file('image')->store('products');
-            $params['image'] = $path;
+
+        // Сохранение изображений
+        $images = [];
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('products');
+                $images[] = $path;
+            }
         }
+
+        // Преобразование путей к изображениям в JSON
+        $params['image'] = json_encode($images);
 
         $product = Product::create($params);
 
@@ -130,17 +138,32 @@ class ProductController extends Controller
     public function update(ProductRequest $request, Product $product) //обновление данных
     {
         $params = $request->all();
-        unset($params['image']);
-        if ($request->has('image')) {
-            Storage::delete($product->image);
-            $path = $request->file('image')->store('products');
-            $params['image'] = $path;
+
+        // Обновление изображений
+        $images = [];
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('products');
+                $images[] = $path;
+            }
+
+            // Преобразование путей к изображениям в JSON
+            $params['image'] = json_encode($images);
+
+            // Удаляем старые изображения
+            $oldImages = json_decode($product->image, true);
+            foreach ($oldImages as $oldImage) {
+                Storage::delete($oldImage);
+            }
         }
+
         foreach (['new', 'hit', 'recommend'] as $fieldName) {
             if (!isset($params[$fieldName])) {
                 $params[$fieldName] = 0;
             }
         }
+
         $product->update($params);
 
         // Обновляем или создаем запись в таблице "product_cashbacks"
@@ -169,6 +192,7 @@ class ProductController extends Controller
 
         return redirect()->route('admin.products.index');
     }
+
 
 
     /**

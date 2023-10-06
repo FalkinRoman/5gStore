@@ -7,6 +7,8 @@ Route::middleware('auth')->group(function (){
     Route::get('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
     Route::get('/home', [\App\Http\Controllers\HomeController::class, 'home'])->name('home');
     Route::get('order/{order}', [\App\Http\Controllers\HomeController::class, 'show'])->name('orders.show');
+    Route::get('/products/{product}/reviews/create', [\App\Http\Controllers\UserReviewsController::class, 'create'])->name('user.reviews.create'); //страница добавления комментария и рейтинга
+    Route::post('/products/{product}/reviews', [\App\Http\Controllers\UserReviewsController::class, 'store'])->name('user.reviews.store'); //процесс создания
 });
 
 //Гости

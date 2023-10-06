@@ -65,7 +65,9 @@
 
                 <tr>
                     <td>Картинка</td>
-                    <td><img style="height:140px; width: 120px;" src="{{ Storage::url($product->image) }} "></td>
+                    <td>@foreach(json_decode($product->image, true) as $imagePath)
+                            <img style="height:140px; width: 120px;" src="{{ Storage::url($imagePath) }}">
+                        @endforeach</td>
                 </tr>
                 <tr>
                     <td>Цена</td>

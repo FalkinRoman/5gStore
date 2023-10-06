@@ -139,11 +139,29 @@
                 </div>
 
 
+                @if(isset($product) && !empty($product->image))
+                    <div class="form-group mt-4">
+                        <label>Старые изображения:</label>
+                        @foreach(json_decode($product->image, true) as $oldImage)
+                            <img style="height:140px; width: 120px;" src="{{ asset('storage/' . $oldImage) }}" alt="Старое изображение" class="img-thumbnail">
+                        @endforeach
+                    </div>
+                @endif
+
                 <div class="form-group mt-4">
-                    <label for="image">Картинка:</label>
-                    <input name="image" type="file" class="form-control-file" id="image"
-                           value="{{ old('image', isset($product) ? $product->image : null) }}">
+                    <label for="images">Изображения (допускаются несколько изображений):</label>
+                    <input name="images[]" type="file" class="form-control-file" id="images" multiple>
                 </div>
+
+                <!-- Добавьте блок для отображения новых изображений после загрузки (если они есть) -->
+                @if(old('images') && is_array(old('images')))
+                    <div class="form-group mt-4">
+                        <label>Новые изображения:</label>
+                        @foreach(old('images') as $newImage)
+                            <img  src="{{ asset('storage/' . $newImage) }}" alt="Новое изображение" class="img-thumbnail">
+                        @endforeach
+                    </div>
+                @endif
 
                 <div class="form-group mt-4">
                     <label for="price">Цена:</label>

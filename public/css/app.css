@@ -1186,9 +1186,9 @@ select {
 }
 
 
-.card-top-container:hover .card-hiden-img {
-    transform: translateX(-150px); /* При ховере сдвигаем блок влево на 140px */
-}
+/*.card-top-container:hover .card-hiden-img {*/
+/*    transform: translateX(-150px); !* При ховере сдвигаем блок влево на 140px *!*/
+/*}*/
 
 .card-top-container:hover .bar-indicator {
     left: calc(100% - 14px); /* Перемещаем .bar-indicator вправо */

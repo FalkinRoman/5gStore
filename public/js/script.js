@@ -27,6 +27,35 @@ const boxCategories = document.querySelectorAll(".box-category");
 const substrateCategory = document.querySelector(".substrate-category");
 
 
+
+
+
+//Карточка с товаром если 2 изображения смена изображения если 1 то остаемся на месте
+const cardTopContainers = document.querySelectorAll(".card-top-container");
+
+
+cardTopContainers.forEach((cardTopContainer) => {
+    const cardHidenImg = cardTopContainer.querySelector(".card-hiden-img");
+    let hasMultipleImages = cardHidenImg.children.length > 1;
+
+    cardTopContainer.addEventListener("mouseenter", function () {
+        if (hasMultipleImages) {
+            cardHidenImg.style.transform = "translateX(-150px)";
+        }
+    });
+
+    cardTopContainer.addEventListener("mouseleave", function () {
+        if (hasMultipleImages) {
+            cardHidenImg.style.transform = "translateX(0)";
+        }
+    });
+});
+
+
+
+
+
+
 // Сначала устанавливаем кнопку "Криптовалюты" активной и отображаем соответствующий контент.
 showCryptoContent();
 
@@ -580,9 +609,18 @@ function createCatalog(event) {
     const categoryNameElement = document.getElementById("category-name2");
     const boxSubcategoryBrands2 = document.getElementById("box-subcategory-brands2");
     const tmplBrandsSubcategory2 = document.getElementById("tmpl-brand-subcategory2").innerHTML;
+    const categoryBoxBrandsBoxBrand = document.querySelectorAll(".category-boxBrands-box-brand");
+
+    //Очищаем стили
+    categoryBoxBrandsBoxBrand.forEach(function(brand) {
+        brand.style.color = "";
+    });
 
     // Получаем цель (элемент, на котором произошел клик)
     const clickedElement = event.currentTarget;
+
+    //Активный элемент стили
+    clickedElement.style.color = "rgb(64, 64, 64)";
 
     // Находим все элементы с классом "textCategoryBar2"
     const textCategoryBar2Elements = document.querySelectorAll(".textCategoryBar22");
@@ -719,9 +757,11 @@ function styleBigWindowCatalogActive() {
     phoneChatLine.style.width = "1px";
     logoMin.style.width = "236px";
     logoMin2.style.display = "none";
-    logoMin3.style.display = "block";
     setTimeout(() => {
+        logoMin3.style.display = "block";
+        setTimeout(() => {
         logoMin3.style.opacity = 1;
+        }, 100);
     }, 200);
     categoryBoxBrands.style.top = "24px"
     categoryBoxBrands2.style.top = "24px"
@@ -749,9 +789,7 @@ function styleBigWindowCatalogNoActive() {
     logoMin.style.width = "64px";
     logoMin2.style.display = "block";
     logoMin3.style.display = "none";
-    setTimeout(() => {
-        logoMin3.style.opacity = 1;
-    }, 200);
+    logoMin3.style.opacity = 0;
     categoryBoxBrands.style.top = "98px"
     categoryBoxBrands2.style.top = "98px"
 }
@@ -787,4 +825,6 @@ function defaultStyleWindow() {
     categoryBoxBrands.style.left = "24px";
     categoryBoxBrands.style.display = "none";
 }
+
+
 
