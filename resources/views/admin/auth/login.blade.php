@@ -53,12 +53,12 @@
             <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
             <label for="email">Email:</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mt-3">
             <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" required>
             <label for="password">Пароль:</label>
         </div>
 
-        <div class="checkbox mb-3">
+        <div class="checkbox mb-3 mt-3">
             <label>
                 <input type="checkbox" name="remember"> Запомнить меня
             </label>

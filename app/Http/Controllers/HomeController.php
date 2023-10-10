@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+
     public function home() {
         $orders = Auth::user()->orders()->active()->paginate(10);
         $wallets = Auth::user()->wallets()->paginate(10);

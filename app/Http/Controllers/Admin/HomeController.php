@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\CashbackHistory;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\Review;
+use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +17,12 @@ class HomeController extends Controller
 {
 
     public function main() {
-        return view('admin.main.index');
+        //кол-во польщователей для главной страницы
+        $userCount = User::count();
+        $productCount = Product::count();
+        $orderCount = Order::active()->count();
+        $reviewCount = Review::count();
+        return view('admin.main.index', compact('userCount', 'productCount', 'orderCount', 'reviewCount'));
     }
     public function orders() {
         $orders = Order::active()->paginate(10);

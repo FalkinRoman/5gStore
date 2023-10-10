@@ -14,6 +14,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource('brands', \App\Http\Controllers\Admin\BrandController::class);
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
     Route::resource('cryptocurrencies', \App\Http\Controllers\Admin\CryptocurrencyController::class);
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+    Route::resource('reviews', \App\Http\Controllers\Admin\ReviewController::class);
 
     Route::post('confirm_order/{orderId}', [\App\Http\Controllers\Admin\HomeController::class, 'confirmOrderCashback'])->name('confirm.order');
 

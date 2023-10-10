@@ -1,9 +1,9 @@
 @extends('admin.layouts.master')
 
 @isset($product)
-    @section('admin.title', 'Редактировать товар ' . $product->name)
+    @section('admin.title', 'Редактировать продукт ' . $product->name)
 @else
-    @section('admin.title', 'Создать товар')
+    @section('admin.title', 'Создать продукт')
 @endisset
 
 @section('admin.content')

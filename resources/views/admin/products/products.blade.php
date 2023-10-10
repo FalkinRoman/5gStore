@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('admin.title', 'Панель администратора - Товары')
+@section('admin.title', 'Панель администратора - Продукты')
 
 @section('admin.content')
     <div class="card">
@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h2>Товары</h2>
+                        <h2>Продукты</h2>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">Главная страница</a></li>
-                            <li class="breadcrumb-item active">Товары</li>
+                            <li class="breadcrumb-item active">Продукты</li>
                         </ol>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                         <div id="pagination" class="d-flex justify-content-start mt-3">
                             {{ $products->links() }}
                         </div>
-                        <a href="{{ route('admin.products.create') }}" class="mt-3 btn btn-primary">Добавить товар</a>
+                        <a href="{{ route('admin.products.create') }}" class="mt-3 btn btn-primary">Добавить продукт</a>
 
 
                      </div>
