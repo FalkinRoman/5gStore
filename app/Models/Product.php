@@ -46,6 +46,14 @@ class Product extends Model
     }
 
 
+    public function averageRatingFormatted() // средний рейтинг и кэширование
+    {
+        return Cache::remember('product_rating_' . $this->id, now()->addHours(1), function () {
+            return Review::where('product_id', $this->id)->avg('rating') ?? 5.0;
+        });
+    }
+
+
 
 
     public function getPriceForCount() {    //общая стоимость для колличества товаров

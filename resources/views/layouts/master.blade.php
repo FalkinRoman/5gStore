@@ -35,6 +35,19 @@
             </div>
 
         </div>
+
+        {{-- подложка2--}}
+        <div   class="substrate-category2" style="display: none" id="substrate-category2">
+
+        </div>
+
+        {{-- бокс для продуктов--}}
+        <div class="boxForProduct" style="display: none">
+
+        </div>
+
+
+
         <div class="category-boxBrands" style="display: none; left: 24px;">
             <div class="category-boxBrands-box" style="padding: 24px">
                 <p id="category-name" style="font-size: 17px; color: rgb(64, 64, 64);"></p>
@@ -61,8 +74,8 @@
 
             <a href="{{ route('index') }}">
                 <div class="logomin flex  center center2">
-                    <img class="logomin2" src="img/logomin.svg" alt="">
-                    <img style="display: none;  opacity: 0 " class="logomin3" src="img/5glogotop.svg" alt="">
+                    <img class="logomin2" src="{{ asset('img/logomin.svg') }}" alt="">
+                    <img style="display: none;  opacity: 0 " class="logomin3" src="{{ asset('img/5glogotop.svg') }}" alt="">
                 </div>
             </a>
 
@@ -86,7 +99,7 @@
 
             <a href="{{ route('index') }}">
                 <div class="left-box-1 transition" style="height: 82px;">
-                        <img id="left-box-1-img" style="margin: 38px 0 0 30px;" src="img/5glogotop.svg" alt="">
+                        <img id="left-box-1-img" style="margin: 38px 0 0 30px;" src="{{ asset('img/5glogotop.svg') }}" alt="">
                 </div>
             </a>
             {{-- Категории--}}
@@ -116,7 +129,7 @@
             <div class="search-box">
                 <div class="flex center between" style="margin: 24px 30px 0 24px;">
                     <div class="location">
-                        <img src="img/location.svg" alt="">
+                        <img src="{{ asset('img/location.svg') }}" alt="">
                         <a href="">
                             <p>Москва</p>
                         </a>
@@ -133,7 +146,7 @@
                 </div>
 
                 <div class="search flex center">
-                    <img style="margin-left: 24px;" src="img/search.svg" >
+                    <img style="margin-left: 24px;" src="{{ asset('img/search.svg') }}" >
                     <input type="text" placeholder="Найти товар">
                 </div>
             </div>
@@ -147,7 +160,7 @@
         <div class="rigth-box">
             <div class="rigth-box-1">
                 <div class="rigth-box-1-container flex">
-                    <img src="img/wallet5g.png" alt="">
+                    <img src="{{ asset('img/wallet5g.png') }}" alt="">
                     <div class="rigth-box-1-container2">
                         <p>Войдите в систему, чтобы получать кэшбэк в критовалюте</p>
                         <button class="rigth-box-1-container-button" href="">Войти</button>
@@ -166,7 +179,7 @@
                             <!-- Ваш контент для криптовалют -->
 
                             <div class="rigth-box-2-container-menu-content-item">
-                                <img src="img/bitcoin1.svg" alt="" class="bitcoin-icon">
+                                <img src="{{ asset('img/bitcoin1.svg') }}" alt="" class="bitcoin-icon">
                                 <div class="rigth-box-2-container-menu-content-item-details">
                                     <p class="bitcoin-name">Биткоин</p>
                                     <p class="bitcoin-symbol">BTC</p>
@@ -178,7 +191,7 @@
                             </div>
 
                             <div class="rigth-box-2-container-menu-content-item">
-                                <img src="img/Ethereum1.svg" alt="" class="bitcoin-icon">
+                                <img src="{{ asset('img/Ethereum1.svg') }}" alt="" class="bitcoin-icon">
                                 <div class="rigth-box-2-container-menu-content-item-details">
                                     <p class="bitcoin-name">Эфириум</p>
                                     <p class="bitcoin-symbol">ETH</p>
@@ -190,7 +203,7 @@
                             </div>
 
                             <div class="rigth-box-2-container-menu-content-item">
-                                <img src="img/USDT.svg" alt="" class="bitcoin-icon">
+                                <img src="{{ asset('img/USDT.svg') }}" alt="" class="bitcoin-icon">
                                 <div class="rigth-box-2-container-menu-content-item-details">
                                     <p class="bitcoin-name">Доллар </p>
                                     <p class="bitcoin-symbol">USDT</p>
@@ -202,7 +215,7 @@
                             </div>
 
                             <div class="rigth-box-2-container-menu-content-item">
-                                <img src="img/5G. COIN.png" alt="" class="bitcoin-icon">
+                                <img src="{{ asset('img/5G. COIN.png') }}" alt="" class="bitcoin-icon">
                                 <div class="rigth-box-2-container-menu-content-item-details">
                                     <p class="bitcoin-name">5G coin</p>
                                     <p class="bitcoin-symbol">5Gcoin</p>
@@ -239,7 +252,7 @@
                             </div>
                             <div class="rigth-box-2-container-menu-content">
                                 <div class="rigth-box-2-container-menu-content-item">
-                                    <img src="img/5G. COIN.png" alt="" class="bitcoin-icon">
+                                    <img src="{{ asset('img/5G. COIN.png') }}" alt="" class="bitcoin-icon">
                                     <div class="rigth-box-2-container-menu-content-item-details">
                                         <p class="bitcoin-name">5G coin</p>
                                         <p class="bitcoin-symbol">5Gcoin</p>
@@ -250,7 +263,7 @@
                                     </div>
                                 </div>
                                 <div class="rigth-box-2-container-menu-content-item">
-                                    <img src="img/bitcoin1.svg" alt="" class="bitcoin-icon">
+                                    <img src="{{ asset('img/bitcoin1.svg') }}" alt="" class="bitcoin-icon">
                                     <div class="rigth-box-2-container-menu-content-item-details">
                                         <p class="bitcoin-name">Биткоин</p>
                                         <p class="bitcoin-symbol">BTC</p>
@@ -262,7 +275,7 @@
                                 </div>
 
                                 <div class="rigth-box-2-container-menu-content-item">
-                                    <img src="img/Ethereum1.svg" alt="" class="bitcoin-icon">
+                                    <img src="{{ asset('img/Ethereum1.svg') }}" alt="" class="bitcoin-icon">
                                     <div class="rigth-box-2-container-menu-content-item-details">
                                         <p class="bitcoin-name">Эфириум</p>
                                         <p class="bitcoin-symbol">ETH</p>
@@ -308,24 +321,24 @@
                 <div class="footer-box-1">
                     <div class="footer-box-1-1">
                         <a href="">
-                            <img src="img/Group 172.svg" alt="">
+                            <img src="{{ asset('img/Group 172.svg') }}" alt="">
                         </a>
                         <a href="" style="margin-left: 12px;">
-                            <img src="img/Group 173.svg" alt="">
+                            <img src="{{ asset('img/Group 173.svg') }}" alt="">
                         </a>
                     </div>
                     <div class="footer-box-1-2">
                         <a href="">
-                            <img src="img/Group 171.svg" alt="">
+                            <img src="{{ asset('img/Group 171.svg') }}" alt="">
                         </a>
                         <a href="">
-                            <img src="img/Group 170.svg" alt="">
+                            <img src="{{ asset('img/Group 170.svg') }}" alt="">
                         </a>
                         <a href="">
-                            <img src="img/Group 167.svg" alt="">
+                            <img src="{{ asset('img/Group 167.svg') }}" alt="">
                         </a>
                         <a href="">
-                            <img src="img/yotube.svg" alt="">
+                            <img src="{{ asset('img/yotube.svg') }}" alt="">
                         </a>
                     </div>
                 </div>
@@ -361,8 +374,24 @@
             </div>
         </div>
     </template>
+    {{--    шаблон для страницы продукта--}}
+    <template id="tmpl-product">
+        <div class="flex">
+            <div>
+                sdfsdfsdfs
+            </div>
+            <div>
+                sdfsdsdf
+            </div>
+            <div id="closeIcon2"  class="substrate-category-closeIcon2 flex center center2">
+                <i class="material-icons" style=" color: rgb(64,64,64) ">close</i>
+            </div>
+        </div>
+    </template>
 
     <script src="/js/app.js"></script>
+    @yield('js')
+    <script src="{{ asset('js/product.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

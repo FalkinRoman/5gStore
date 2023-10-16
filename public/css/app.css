@@ -265,7 +265,7 @@ button {
 
 
 
-
+/*подложка 1*/
 
 .substrate-category {
     position: fixed;
@@ -283,8 +283,8 @@ button {
     position: fixed;
     top: 24px;
     right: 24px;
-    height: 40px;
-    width: 40px;
+    height: 36px;
+    width: 36px;
     border-radius: 20px;
     background-color:#F5F5F7 ;
     cursor: pointer;
@@ -293,6 +293,53 @@ button {
 .substrate-category-closeIcon:hover {
     background-color:#E0E0E0 ;
 }
+
+/*подложка 2*/
+
+.substrate-category2 {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 3;
+    background-color: rgb(0, 0, 0);
+    opacity: 0.8;
+}
+
+.boxForProduct {
+    z-index: 4;
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    bottom: 24px;
+    width: 85%;
+
+    background-color: #FFFFFF;
+    border-radius: 32px;
+
+}
+
+.substrate-category-closeIcon2 {
+    z-index: 4;
+    position: fixed;
+    top: 48px;
+    right: 48px;
+    height: 36px;
+    width: 36px;
+    border-radius: 20px;
+    background-color:#F5F5F7 ;
+    cursor: pointer;
+}
+
+.substrate-category-closeIcon2:hover {
+    background-color:#E0E0E0 ;
+}
+
+
+
+
+
 
 .category-boxBrands {
     width: 236px;

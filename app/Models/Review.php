@@ -26,4 +26,7 @@ class Review extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+
+
 }

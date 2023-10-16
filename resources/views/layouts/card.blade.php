@@ -1,27 +1,29 @@
 <div class="card">
-    <div class="card-top-container flex center">
-        <div class="card-box-dinamic">
-            <div class="card-hiden-img flex center">
-                @foreach(array_slice(json_decode($product->image, true), 0, 2) as $imagePath)
-                    <div class="flex center" style="width: 150px; height: 150px;">
-                        <img  src="{{ Storage::url($imagePath) }}">
-                    </div>
-                @endforeach
+    <a href="{{ route('product', $product->code) }}" class="product-link" data-product-code="{{ $product->code }}">
+        <div class="card-top-container flex center">
+            <div class="card-box-dinamic">
+                <div class="card-hiden-img flex center">
+                    @foreach(array_slice(json_decode($product->image, true), 0, 2) as $imagePath)
+                        <div class="flex center" style="width: 150px; height: 150px;">
+                            <img  src="{{ Storage::url($imagePath) }}">
+                        </div>
+                    @endforeach
+                </div>
             </div>
+            @if(count(json_decode($product->image, true)) > 1)
+                <div class="bar">
+                    <span class="bar-indicator"></span>
+                </div>
+            @endif
         </div>
-        @if(count(json_decode($product->image, true)) > 1)
-            <div class="bar">
-                <span class="bar-indicator"></span>
-            </div>
-        @endif
-    </div>
+    </a>
 
     <div class="card-down-container flex column">
         <p style="font-size: 14px;">{{ $product->name }}</p>
         <div class="card-raiting-reviews flex center">
-            <img src="img/Star.svg" alt="">
-            <p style="margin-left: 3px;">4.5</p>
-            <p style="margin-left: 8px; color: #8e8e93;; font-size: 12px; font-weight: 400;">35</p>
+            <img src="{{ asset('img/Star.svg') }}" alt="">
+            <p style="margin-left: 3px;">{{ number_format($product->averageRatingFormatted(), 1) }}</p>
+            <p style="margin-left: 8px; color: #8e8e93;; font-size: 12px; font-weight: 400;">{{ $product->reviews->count() }}</p>
             <p style="margin-left: 3px;  color: #8e8e93;; font-size: 12px; font-weight: 400;">Отзывов</p>
         </div>
 

@@ -9,9 +9,9 @@
                 <span>&lt;</span>
             </div>
             <div class="carousel-slide">
-                <img src="img/Карусель1.webp" alt="Изображение 1">
-                <img src="img/Карусель2.webp" alt="Изображение 2">
-                <img src="img/Карусель3.webp" alt="Изображение 3">
+                <img src="{{ asset('img/Карусель1.webp') }}" alt="Изображение 1">
+                <img src="{{ asset('img/Карусель2.webp') }}" alt="Изображение 2">
+                <img src="{{ asset('img/Карусель3.webp') }}" alt="Изображение 3">
                 <!-- Добавьте дополнительные изображения по мере необходимости -->
             </div>
             <div class="carousel-arrow right-arrow">
@@ -123,7 +123,9 @@
 
 @endsection
 
-
+@section('js')
+    <script src="/js/index.js"></script>
+@endsection
 
 
 

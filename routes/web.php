@@ -35,7 +35,11 @@ Route::get('/get-brands-and-products2/{categoryId}/{brandId}', [\App\Http\Contro
 Route::get('/', [\App\Http\Controllers\MainConroller::class, 'index'])->name('index');
 Route::get('/categories', [\App\Http\Controllers\MainConroller::class, 'categories'])->name('categories');
 Route::get('/{category}', [\App\Http\Controllers\MainConroller::class, 'category'])->name('category');
-Route::get('/{category}/{product}', [\App\Http\Controllers\MainConroller::class, 'product'])->name('product');
+Route::get('/product/{productCode}', [\App\Http\Controllers\MainConroller::class, 'product'])->name('product');// страница продукта
+Route::get('/productData/{productCode}', [\App\Http\Controllers\MainConroller::class, 'productData'])->name('productData'); //json продукта
+
+
+
 Route::post('subscription/{product}', [\App\Http\Controllers\MainConroller::class, 'subscribe'])->name('subscription');  //уведомление о пуступлении товара
 
 
