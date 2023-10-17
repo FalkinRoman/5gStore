@@ -42,7 +42,7 @@
         </div>
 
         {{-- бокс для продуктов--}}
-        <div class="boxForProduct" style="display: none">
+        <div class="boxForProduct" style="display: none; right: -3000px;">
 
         </div>
 
@@ -376,15 +376,131 @@
     </template>
     {{--    шаблон для страницы продукта--}}
     <template id="tmpl-product">
-        <div class="flex">
-            <div>
-                sdfsdfsdfs
-            </div>
-            <div>
-                sdfsdsdf
+        <div class="product-box-margin" style="margin: 24px 72px 24px 24px">
+            <div class="flex product-box-top">
+                <div class="product-box-top-img">
+
+                </div>
+                <div class="product-box-top-info">
+                    <h1 class="product-box-top-name">Apple iPhone 15 Pro Max eSIM 512 ГБ, «титановый бежевый»</h1>
+                    <div class="colors flex" style="margin-top: 24px">
+                        <div style="width: 100px">
+                            <p class="colors__title">Цвет</p>
+                        </div>
+                        <div class="colors__items flex" style="gap: 14px;">
+                            <a href="" >
+                                <div class="colors-item" style="position: relative;">
+                                    <div class="highlight active-highlight"></div>
+                                </div>
+                            </a>
+                            <a href="" >
+                                <div class="colors-item" style="position: relative; background: darkgrey">
+                                    <div class="highlight"></div>
+                                </div>
+                            </a>
+                            <a href="" >
+                                <div class="colors-item" style="position: relative; background: black">
+                                    <div class="highlight"></div>
+                                </div>
+                            </a>
+                            <a href="" >
+                                <div class="colors-item" style="position: relative;     background: rgb(171, 166, 155);">
+                                    <div class="highlight"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="memory flex center" style="margin-top: 24px">
+                        <div style="width: 100px">
+                            <p class="colors__title">Память</p>
+                        </div>
+                        <div class="memory__items flex" style="gap: 14px;">
+                            <a href="" >
+                                <div class="memory-item flex center center2" style="position: relative;">
+                                    <p>256 ГБ</p>
+
+                                </div>
+                            </a>
+                            <a href="" >
+                                <div class="memory-item flex center center2 highlight-memory" style="position: relative;">
+                                    <p>524 ГБ</p>
+                                </div>
+                            </a>
+                            <a href="" >
+                                <div class="memory-item flex center center2" style="position: relative;">
+                                    <p>1 ТБ</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-box-top-line"></div>
+                    <div class="product-box-top-prise-cashback flex between" style="margin-top: 24px">
+                        <div class="flex">
+                            <p class="prise-product">33 990 ₽</p>
+                            <p class="prise2-product">43 990 ₽</p>
+                        </div>
+                        <div class="flex center">
+                            <p class="text-cashback-product">Кэшбэк</p>
+                            <p class="cashback-number">+0.003</p>
+                            <img src="{{ asset('img/bitcoin1.svg') }}" alt="" class="bitcoin-icon">
+                        </div>
+                    </div>
+                    <div class="buttons-product-box flex" style="margin-top: 24px">
+                        <button class="buttons-product">Добавить в корзину</button>
+                        <div class="buttons-product-like flex center2 center">
+                            <i id="buttons-product-like" class="material-icons">favorite_border</i>
+                        </div>
+                    </div>
+                    <div class="product-code-brand-box flex between" style="margin-top: 24px">
+                        <div>
+                            <p class="code-product">Код товара: MNTG3</p>
+                        </div>
+                        <div class="flex center">
+                            <img src="{{ asset('img/apple-logo.svg') }}" alt="" style="width: 18px;height: 22px;">
+                            <p class="brand-name-product">Все товары Apple</p>
+                        </div>
+                    </div>
+                    <div class="product-delivery-box flex column">
+                        <div>
+                            <p class="text-top-delivery">Получить в <span style="color: rgba(0, 101, 255, 0.90);">Москве</span></p>
+                        </div>
+                        <div class="flex between">
+                            <div class="flex">
+                                <img src="{{ asset('img/yandex_go.svg') }}" style="height: 24px; width: 24px; margin-right: 20px">
+                                <div class="flex column">
+                                    <p class="text1-delivery">Яндекс.Доставка в течение дня</p>
+                                    <p class="text2-delivery">при оплате на сайте и заказе до 18:00</p>
+                                </div>
+                            </div>
+                            <p class="text3-delivery">990₽</p>
+                        </div>
+                        <div class="product-box-top-line2"></div>
+                        <div class="flex between">
+                            <div class="flex">
+                                <img src="{{ asset('img/car.svg') }}" style="width: 23.995px; height: 16.36px; margin-right: 20px">
+                                <div class="flex column">
+                                    <p class="text1-delivery">Курьером завтра</p>
+                                    <p class="text2-delivery">Понедельник, 28 августа</p>
+                                </div>
+                            </div>
+                            <p class="text3-delivery">Бесплатно</p>
+                        </div>
+                        <div class="product-box-top-line2"></div>
+                        <div class="flex between">
+                            <div class="flex">
+                                <img src="{{ asset('img/shop.svg') }}" style="width: 24.025px;height: 22.8px; margin-right: 20px">
+                                <div class="flex column">
+                                    <p class="text1-delivery">Забрать в магазине</p>
+                                    <p class="text2-delivery">есть в <span style="color: rgba(0, 101, 255, 0.90);">наличии</span></p>
+                                </div>
+                            </div>
+                            <p class="text3-delivery">Бесплатно</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="closeIcon2"  class="substrate-category-closeIcon2 flex center center2">
-                <i class="material-icons" style=" color: rgb(64,64,64) ">close</i>
+                <i  class="material-icons" style=" color: rgb(40,40,40) ">close</i>
             </div>
         </div>
     </template>

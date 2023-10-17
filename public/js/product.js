@@ -9,6 +9,7 @@ let currentURL = window.location.href; // текущий URL
 // базовые настройки для закрытой карточки
 function defaultStyleWindow2() {
     boxForProduct.style.display = "none";
+    boxForProduct.style.right = "-2000px";
     substrateCategory2.style.display = "none";
     // Вернуться к предыдущему URL
     if (currentURL) {
@@ -32,6 +33,9 @@ function loadProductByCode(productCode) {
             // Отобразите контейнер
             boxForProduct.style.display = "block";
             substrateCategory2.style.display = "block";
+            setTimeout(() => {
+                boxForProduct.style.right = "24px";
+            }, 100);
 
             // Получите элемент с id "closeIcon2" из активированного шаблона
             iconClose2 = boxForProduct.querySelector("#closeIcon2"); // Удалите объявление "const"
