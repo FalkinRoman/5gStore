@@ -988,7 +988,6 @@ select {
     width: 100%;
     margin: 0 auto;
 
-
 }
 
 .carousel-arrow {
@@ -1052,6 +1051,87 @@ select {
 .carousel-dot.active {
     background-color: #1A74FF;
 }
+
+
+
+
+
+/* Контейнер карусели 2 карточка товара */
+.new-carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    /*display: grid;*/
+    /*grid-template-columns: 1fr; !* Один столбец с равным размером *!*/
+    /*grid-auto-rows: 1fr; !* Высота автоматически применяется равной ширине *!*/
+
+}
+
+/* Стили для стрелок карусели */
+.new-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для левой стрелки */
+.new-left-arrow {
+    left: 10px;
+}
+
+/* Стили для правой стрелки */
+.new-right-arrow {
+    right: 10px;
+}
+
+
+/* Стили для слайдов карусели */
+.new-carousel-slide {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Стили для изображений в слайде */
+.new-carousel-slide img {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+}
+
+/* Стили для точек карусели */
+.new-carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Стили для одной точки */
+.new-carousel-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #F5F5F7;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+/* Стили для активной точки */
+.new-carousel-dot.active {
+    background-color: #1A74FF;
+}
+
 
 
 
@@ -1414,11 +1494,19 @@ select {
 
 /* template id="tmpl-product" */
 .product-box-top-img {
-    width: 60%;
+    width: 55%;
+    margin-right: 24px;
 }
 
+
+
+
+
+
+
+
 .product-box-top-info {
-    width: 40%;
+    width: 45%;
 
 }
 
@@ -1427,7 +1515,7 @@ select {
     text-align: left;
     font-size: 22px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 30px;
     letter-spacing: -0.38px;
 }
@@ -1508,7 +1596,7 @@ select {
     color: #D9D9D9;
     font-size: 17px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 38px;
     text-decoration: line-through;
     margin-left: 10px;
@@ -1517,9 +1605,9 @@ select {
 .text-cashback-product {
     color: #A6A6A6;
     text-align: center;
-    font-size: 16px;
+    font-size: 15px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 22px;
     letter-spacing: -0.38px;
     margin-right: 10px;
@@ -1530,7 +1618,7 @@ select {
     text-align: center;
     font-size: 16px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 22px; /* 137.5% */
     letter-spacing: -0.38px;
     margin-right: 6px;
@@ -1545,9 +1633,16 @@ select {
     text-align: center;
     font-size: 16px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 22px;
     filter: drop-shadow(0px 1px 3px rgba(36, 36, 36, 0.25));
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+
+.buttons-product:hover {
+    background: #2C5ED9;
 }
 
 .buttons-product-like {
@@ -1557,7 +1652,11 @@ select {
     filter: drop-shadow(0px 1px 1px rgba(36, 36, 36, 0.25));
     border-radius: 18px;
     margin-left: 14px;
+    cursor: pointer;
+}
 
+.buttons-product-like:hover #buttons-product-like {
+    color:#595959 ;
 }
 
 #buttons-product-like {
@@ -1630,6 +1729,8 @@ select {
     font-weight: 500;
     line-height: 16px;
 }
+
+
 
 /* Универсальные классы */
 

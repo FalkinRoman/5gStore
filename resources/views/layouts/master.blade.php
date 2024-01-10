@@ -379,6 +379,26 @@
         <div class="product-box-margin" style="margin: 24px 72px 24px 24px">
             <div class="flex product-box-top">
                 <div class="product-box-top-img">
+                    <div class="new-carousel-container">
+                        <div class="new-carousel-overlay">
+                            <div class="new-carousel-arrow new-left-arrow">
+                                <span>&lt;</span>
+                            </div>
+                            <div class="new-carousel-slide">
+                                <img src="{{ asset('img/watch.webp') }}" alt="Изображение 1">
+                                <img src="{{ asset('img/Карусель2.webp') }}" alt="Изображение 2">
+                                <img src="{{ asset('img/Карусель3.webp') }}" alt="Изображение 3">
+                                <img src="{{ asset('img/Карусель3.webp') }}" alt="Изображение 3">
+                                <!-- Add additional images as needed -->
+                            </div>
+                            <div class="new-carousel-arrow new-right-arrow">
+                                <span>&gt;</span>
+                            </div>
+                        </div>
+                        <div class="new-carousel-dots">
+                            <!-- Dots will be added using JavaScript -->
+                        </div>
+                    </div>
 
                 </div>
                 <div class="product-box-top-info">

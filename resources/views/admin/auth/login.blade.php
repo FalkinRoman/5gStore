@@ -50,11 +50,12 @@
         @endif
 
         <div class="form-floating">
-            <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
+            <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="falkin95@mail.ru" required>
+            <!-- value="{{ old('email') }}" - добавить выше для input  -->
             <label for="email">Email:</label>
         </div>
         <div class="form-floating mt-3">
-            <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" required>
+            <input type="password" value="123456" id="password" name="password" class="form-control @error('password') is-invalid @enderror" required>
             <label for="password">Пароль:</label>
         </div>
 
